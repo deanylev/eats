@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dean's Favourite Eats</title>
+  <meta name="description" content="nom">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #180321;
+      color: #fcf6fe;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding: 15px;
+    }
+
+    .title {
+      font-size: 50px;
+      line-height: 60px;
+    }
+
+    .heading {
+      font-size: 28px;
+      padding-top: 15px;
+    }
+
+    .subHeading {
+      color: #e8a61a;
+      font-size: 20px;
+      font-weight: 700;
+      padding-left: 5px;
+      text-decoration: underline;
+    }
+
+    .body {
+      padding: 10px;
+    }
+
+    .sorting > div {
+      padding: 3px 0;
+    }
+
+    #placesContainer {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    #placesContainer > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    #placesContainer > div > div {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 450px;
+      padding: 15px 20px;
+    }
+
+    #placesContainer > div > div > .area {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Dean's Favourite Eats</div>
+  <div class="body">
+    <div class="sorting">
+      <div>
+        <label for="city">City:</label>
+        <select id="city">
+          <optgroup label="Australia">
+            <option value="Melbourne">Melbourne</option>
+            <option value="Sydney">Sydney</option>
+            <option value="Torquay">Torquay</option>
+          </optgroup>
+          <optgroup label="Italy">
+            <option value="Florence">Florence</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <label for="category">Categorise By:</label>
+        <select id="category">
+          <option value="area">Area</option>
+          <option value="type">Type of Food</option>
+        </select>
+      </div>
+    </div>
+    <div id="placesContainer"></div>
+  </div>
+  <script>
+    // too tired of Create React App
+
+    const emojisByType = {
+      Bagels: '🥯',
+      Berders: '🍔',
+      Cafes: '☕️',
+      Greek: '🇬🇷',
+      Italian: '🍝🍕',
+      Japanese: '🍣',
+      Mexican: '🌮',
+      Pub: '🍻',
+      Sandwiches: '🥖',
+      Steak: '🥩'
+    };
+    const emojisBySubType = {
+      Pasta: '🍝',
+      Pizza: '🍕'
+    };
+    const placesByCity = {
+      Melbourne: [
+        {
+          area: 'Armadale',
+          name: "Hank's Café & Bagelry",
+          notes: 'Came here because of a TikTok and did not disappoint. Great coffee and pastrami bagel, need to come back for the schnitzel',
+          type: 'Bagels',
+          url: 'https://maps.app.goo.gl/KWFtUbgrURAfaxMZ9'
+        },
+        {
+          area: 'Armadale',
+          name: 'Neighbourhood Pizza',
+          notes: "Haven't had the pasta but the pizza is delicious",
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/GkRp3E7U9TQFKEZbA'
+        },
+        {
+          area: 'Malvern',
+          name: 'Kolonaki',
+          notes: 'Genuinely one of the tastiest places in Melbourne. Wish they would answer the damn phone!',
+          type: 'Greek',
+          url: 'https://maps.app.goo.gl/9JuWQS1p1cespya3A'
+        },
+        {
+          area: 'Bentleigh',
+          name: 'Da Giuseppe',
+          notes: 'Some of my favourite woodfire pizza, really nice family run place',
+          subType: 'Pizza',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/Ee5AVG9Gm8fciTry8'
+        },
+        {
+          area: 'Bentleigh',
+          name: 'Sushi Factory',
+          notes: 'Cheap, delicious sushi. A staple of Centre Rd',
+          type: 'Japanese',
+          url: 'https://maps.app.goo.gl/WRYJVVWQvBjf4vxe9'
+        },
+        {
+          area: 'Bentleigh',
+          name: "Milo's Deli",
+          notes: 'For a while I got a sandwich here every single Friday, they are delicious',
+          type: 'Sandwiches',
+          url: 'https://maps.app.goo.gl/U9RckXW1xE9atvzC6'
+        },
+        {
+          area: 'McKinnon',
+          name: 'Ohana',
+          notes: 'Delicious woodfired pizza and super friendly staff. Recommended to me by Nat, the CEO of Vivi, and did not disappoint',
+          subType: 'Pizza',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/qR1WsxQX9ZHpjCpr9'
+        },
+        {
+          area: 'Brighton',
+          name: 'Cucina & Co',
+          notes: 'Delicious pizza and pasta. Came back plenty of times even though they made us wait literally an hour for our booked table on our first visit',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/VNPdkSGgdih61W6A7'
+        },
+        {
+          area: 'Brighton',
+          name: 'Saint Martins Café',
+          notes: 'Great coffee and an absolutely delicious beef burger (spoiled somewhat by being served with crisps instead of fries)',
+          type: 'Cafes',
+          url: 'https://maps.app.goo.gl/tffXhHyXH8bGYgUP9'
+        },
+        {
+          area: 'Brighton',
+          name: 'Kokoro',
+          notes: 'Great sushi train, lots of variety and not too expensive',
+          type: 'Japanese',
+          url: 'https://maps.app.goo.gl/jawbgwPnWJYSisZf8'
+        },
+        {
+          area: 'Carlton',
+          name: 'Capitano',
+          notes: 'Deep dish pizza to die for. I think the pasta and tiramisu are kind of overrated but the deep dish more than makes up for it',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/kMfZYJxK9BADeeJv9'
+        },
+        {
+          area: 'CBD',
+          name: 'Five Guys',
+          notes: 'Genuinely my favourite burgers in Melbourne. Great milkshakes too',
+          type: 'Berders',
+          url: 'https://maps.app.goo.gl/67jsqjcVt2SMTRD99'
+        },
+        {
+          area: 'Prahan',
+          name: 'Le Petit Marché',
+          notes: 'Entrecôte steak and sauce in a delicious baguette. Hits the spot every time',
+          type: 'Sandwiches',
+          url: 'https://maps.app.goo.gl/Q6U1fDVD7GsFMx2VA'
+        },
+        {
+          area: 'Prahan',
+          name: 'Hobba',
+          notes: 'Great coffee + chicken and waffles ❤️',
+          type: 'Cafes',
+          url: 'https://maps.app.goo.gl/BPkJe2DecMmiUtVm7'
+        },
+        {
+          area: 'Prahan',
+          name: 'Marbl',
+          notes: 'Best steak in town, especially for the money. Extremely friendly owner (same for the Port Melbourne one)',
+          type: 'Steak',
+          url: 'https://maps.app.goo.gl/9iVVMhU4F57DQ9PJ7'
+        },
+        {
+          area: 'Richmond',
+          name: "Hector's Deli",
+          notes: 'Beef and pickles toastie is geniuinely to die for, and some of the best glazed donuts I have ever had. Great coffee too',
+          type: 'Sandwiches',
+          url: 'https://maps.app.goo.gl/8nquy3oNdZyohhP6A'
+        },
+        {
+          area: 'St Kilda',
+          name: 'Radio Mexico',
+          notes: 'The only Mexican food I have had outside the US that I genuinely love',
+          type: 'Mexican',
+          url: 'https://maps.app.goo.gl/6ZFv2gMTUo7VN8ZY6'
+        },
+        {
+          area: 'St Kilda',
+          name: 'Rococo',
+          notes: 'Well known but slept on. Huge menu variety and always (I mean always) has a table available last minute',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/tZyv7Wn1D7oGMH6ZA'
+        },
+        {
+          area: 'South Yarra',
+          name: 'Gilson',
+          notes: "Melbourne's version of Bar Totti's, i.e. you rip off pieces of delicious bread and dip it in toppings of your choice. Great pasta too",
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/jHDwJwrtGocZuPqA8'
+        },
+        {
+          area: 'South Yarra',
+          name: "Leonard's House of Love",
+          notes: 'Best fried chicken burger in Melbourne. I used to come here with my coworkers in the early, scrappy days of Vivi so it holds a special place in my heart',
+          type: 'Pub',
+          url: 'https://maps.app.goo.gl/YzUG1E4GR4PHka2K7'
+        },
+        {
+          area: 'South Yarra',
+          name: 'Moose Bar & Café',
+          notes: 'I get a burger and chips here at least once a week, so simple and tasty. Staff are all absolute legends',
+          type: 'Cafes',
+          url: 'https://maps.app.goo.gl/KsoW4EUNhCV99NDo7'
+        },
+        {
+          area: 'South Yarra',
+          name: 'Pink Ginger JP',
+          notes: 'Fresh, delicious Japanese food, a great lunch spot',
+          type: 'Japanese',
+          url: 'https://maps.app.goo.gl/KQdb9YJMA9YxYbh28'
+        },
+        {
+          area: 'South Yarra',
+          name: 'itteki',
+          notes: "Adorable Japanese cafe with some of the nicest staff around, great coffee, and extremely high quality merch of the owner's Shiba Inu. No food or proper seating, but I love this place so much that it has to get a mention",
+          type: 'Cafes',
+          url: 'https://maps.app.goo.gl/arRRrqF1Eo44jaoNA'
+,        }
+      ],
+      Sydney: [
+        {
+          area: 'CBD',
+          name: "Bar Totti's",
+          notes: "Bread w/ toppings and pasta are absolutely out of this world. Will never forget coming here for my friend Mia's birthday in activewear and splitting a $700 bottle of wine",
+          subType: 'Pasta',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/zt85xPo2rgDPbXd16'
+        },
+        {
+          area: 'Bondi',
+          name: "Little L Burgers",
+          notes: 'Known for their chicken burger but I actually think their beef burgers are absolutely delicious',
+          type: 'Berders',
+          url: 'https://maps.app.goo.gl/ssz5aLQTtniMmUYr8'
+        },
+        {
+          area: 'Bondi',
+          name: 'Macelleria',
+          notes: 'Have had the steak, sausages and burgers and they are all delicious',
+          type: 'Steak',
+          url: 'https://maps.app.goo.gl/p154765mheEBRCgs9'
+        }
+      ],
+      Torquay: [
+        {
+          name: 'Pond Cafe',
+          notes: 'Brisket sandwich to die for. Salty that they changed its ingredients some time between 2023 and 2023 but it still does the trick',
+          type: 'Cafes',
+          url: 'https://maps.app.goo.gl/emmRAwqHaPQUQXTx9'
+        },
+        {
+          name: 'Pearl',
+          notes: 'Simple, delicious pasta',
+          subType: 'Pasta',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/Dpjkp5aaza5phcDk6'
+        },
+        {
+          name: 'Mortadeli',
+          notes: "The coffee is a bit average, the merch sucks (sorry guys) but the sandwiches are bangin'",
+          type: 'Sandwiches',
+          url: 'https://maps.app.goo.gl/UYAC8dq5FtvLeXgW9'
+        }
+      ],
+      Florence: [
+        {
+          name: 'Casella 18',
+          notes: 'The single best meal I have ever eaten. Seriously. Pizza, pasta, and tiramisu are all must-orders',
+          type: 'Italian',
+          url: 'https://maps.app.goo.gl/AcvLqwfeNxtoKpQ26'
+        }
+      ]
+    };
+
+    const cityElement = document.getElementById('city');
+    cityElement.value = localStorage.getItem('city') || 'Melbourne';
+    cityElement.addEventListener('change', (event) => {
+      setPlaces();
+      localStorage.setItem('city', event.target.value);
+    });
+
+    const categoryElement = document.getElementById('category');
+    categoryElement.value = localStorage.getItem('category') || 'area';
+    categoryElement.addEventListener('change', (event) => {
+      setPlaces();
+      localStorage.setItem('category', event.target.value);
+    });
+
+    const placesContainerElement = document.getElementById('placesContainer');
+    const setPlaces = () => {
+      const selectedCity = cityElement.value;
+      const places = placesByCity[selectedCity];
+      const headingKey = categoryElement.value;
+
+      placesContainerElement.innerHTML = '';
+
+      const sortedPlaces = [...places].sort((a, b) => {
+        if (a[headingKey] > b[headingKey]) {
+          return 1;
+        }
+
+        if (b[headingKey] > a[headingKey]) {
+          return -1;
+        }
+
+        return 0;
+      });
+      const placesByHeading = {};
+      sortedPlaces.forEach((place) => {
+        const headingValue = place[headingKey] || selectedCity;
+        if (!placesByHeading[headingValue]) {
+          placesByHeading[headingValue] = [];
+        }
+
+        placesByHeading[headingValue].push(place);
+      });
+
+      for (const [heading, places] of Object.entries(placesByHeading)) {
+        const headingElement = document.createElement('span');
+        headingElement.className = 'heading';
+        headingElement.innerText = heading;
+        placesContainerElement.appendChild(headingElement);
+
+        const placesElement = document.createElement('div');
+        places.forEach((place) => {
+          const placeElement = document.createElement('div');
+
+          const emojiElement = document.createElement('span');
+          emojiElement.innerText = emojisBySubType[place.subType] || emojisByType[place.type];
+
+          const subHeadingElement = document.createElement('a');
+          subHeadingElement.className = 'subHeading';
+          subHeadingElement.href = place.url;
+          subHeadingElement.target = '_blank';
+          subHeadingElement.innerText = place.name;
+          emojiElement.appendChild(subHeadingElement);
+
+          const notesElement = document.createElement('div');
+          notesElement.innerText = place.notes;
+
+          placeElement.appendChild(emojiElement);
+          if (headingKey === 'type' && place.area) {
+            const areaElement = document.createElement('span');
+            areaElement.innerText = place.area;
+            areaElement.className = 'area';
+            placeElement.appendChild(areaElement);
+          }
+          placeElement.appendChild(notesElement);
+
+          placesElement.appendChild(placeElement);
+        });
+        placesContainerElement.appendChild(placesElement);
+      }
+    };
+    setPlaces();
+  </script>
+</body>
+</html>

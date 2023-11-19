@@ -77,25 +77,20 @@
     <div class="sorting">
       <div>
         <label for="city">City:</label>
-        <select id="city">
-          <optgroup label="Australia">
-            <option value="Melbourne">Melbourne</option>
-            <option value="Sydney">Sydney</option>
-            <option value="Torquay">Torquay</option>
-          </optgroup>
-          <optgroup label="Italy">
-            <option value="Florence">Florence</option>
-          </optgroup>
-          <optgroup label="USA">
-            <option value="New York">New York</option>
-          </optgroup>
-        </select>
+        <select id="city"></select>
       </div>
       <div>
         <label for="category">Categorise By:</label>
         <select id="category">
           <option value="area">Area</option>
           <option value="type">Type of Food</option>
+        </select>
+      </div>
+      <div>
+        <label for="status">Status:</label>
+        <select id="status">
+          <option value="tried">Tried</option>
+          <option value="wanted">Want to Try</option>
         </select>
       </div>
     </div>
@@ -108,253 +103,440 @@
       Bagels: '🥯',
       Berders: '🍔',
       Cafes: '☕️',
+      French: '🇫🇷',
+      'Fried Chicken': '🍗',
       Greek: '🇬🇷',
+      Indian: '🇮🇳',
       Italian: '🍝🍕',
       Japanese: '🍣',
+      Meat: '🥩',
       Mexican: '🌮',
       Pub: '🍻',
       Sandwiches: '🥖',
-      Steak: '🥩'
     };
     const emojisBySubType = {
       Pasta: '🍝',
       Pizza: '🍕'
     };
-    const placesByCity = {
-      Melbourne: [
-        {
-          area: 'Armadale',
-          name: "Hank's Café & Bagelry",
-          notes: 'Came here because of a TikTok and did not disappoint. Great coffee and pastrami bagel, need to come back for the schnitzel',
-          type: 'Bagels',
-          url: 'https://maps.app.goo.gl/KWFtUbgrURAfaxMZ9'
-        },
-        {
-          area: 'Armadale',
-          name: 'Neighbourhood Pizza',
-          notes: "Haven't had the pasta but the pizza is delicious",
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/GkRp3E7U9TQFKEZbA'
-        },
-        {
-          area: 'Malvern',
-          name: 'Kolonaki',
-          notes: 'Genuinely one of the tastiest places in Melbourne. Wish they would answer the damn phone!',
-          type: 'Greek',
-          url: 'https://maps.app.goo.gl/9JuWQS1p1cespya3A'
-        },
-        {
-          area: 'Bentleigh',
-          name: 'Da Giuseppe',
-          notes: 'Some of my favourite woodfire pizza, really nice family run place',
-          subType: 'Pizza',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/Ee5AVG9Gm8fciTry8'
-        },
-        {
-          area: 'Bentleigh',
-          name: 'Sushi Factory',
-          notes: 'Cheap, delicious sushi. A staple of Centre Rd',
-          type: 'Japanese',
-          url: 'https://maps.app.goo.gl/WRYJVVWQvBjf4vxe9'
-        },
-        {
-          area: 'Bentleigh',
-          name: "Milo's Deli",
-          notes: 'For a while I got a sandwich here every single Friday, they are delicious',
-          type: 'Sandwiches',
-          url: 'https://maps.app.goo.gl/U9RckXW1xE9atvzC6'
-        },
-        {
-          area: 'McKinnon',
-          name: 'Ohana',
-          notes: 'Delicious woodfired pizza and super friendly staff. Recommended to me by Nat, the CEO of Vivi, and did not disappoint',
-          subType: 'Pizza',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/qR1WsxQX9ZHpjCpr9'
-        },
-        {
-          area: 'Brighton',
-          name: 'Cucina & Co',
-          notes: 'Delicious pizza and pasta. Came back plenty of times even though they made us wait literally an hour for our booked table on our first visit',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/VNPdkSGgdih61W6A7'
-        },
-        {
-          area: 'Brighton',
-          name: 'Saint Martins Café',
-          notes: 'Great coffee and an absolutely delicious beef berder (spoiled somewhat by being served with crisps instead of fries)',
-          type: 'Cafes',
-          url: 'https://maps.app.goo.gl/tffXhHyXH8bGYgUP9'
-        },
-        {
-          area: 'Brighton',
-          name: 'Kokoro',
-          notes: 'Great sushi train, lots of variety and not too expensive',
-          type: 'Japanese',
-          url: 'https://maps.app.goo.gl/jawbgwPnWJYSisZf8'
-        },
-        {
-          area: 'Carlton',
-          name: 'Capitano',
-          notes: 'Deep dish pizza to die for. I think the pasta and tiramisu are kind of overrated but the deep dish more than makes up for it',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/kMfZYJxK9BADeeJv9'
-        },
-        {
-          area: 'CBD',
-          name: 'Five Guys',
-          notes: 'Genuinely my favourite berders in Melbourne. Great milkshakes too',
-          type: 'Berders',
-          url: 'https://maps.app.goo.gl/67jsqjcVt2SMTRD99'
-        },
-        {
-          area: 'Prahan',
-          name: 'Le Petit Marché',
-          notes: 'Entrecôte steak and sauce in a delicious baguette. Hits the spot every time',
-          type: 'Sandwiches',
-          url: 'https://maps.app.goo.gl/Q6U1fDVD7GsFMx2VA'
-        },
-        {
-          area: 'Prahan',
-          name: 'Hobba',
-          notes: 'Great coffee + chicken and waffles ❤️',
-          type: 'Cafes',
-          url: 'https://maps.app.goo.gl/BPkJe2DecMmiUtVm7'
-        },
-        {
-          area: 'Prahan',
-          name: 'Marbl',
-          notes: 'Best steak in town, especially for the money. Extremely friendly owner (same for the Port Melbourne one)',
-          type: 'Steak',
-          url: 'https://maps.app.goo.gl/9iVVMhU4F57DQ9PJ7'
-        },
-        {
-          area: 'Richmond',
-          name: "Hector's Deli",
-          notes: 'Beef and pickles toastie is geniuinely to die for, and some of the best glazed donuts I have ever had. Great coffee too',
-          type: 'Sandwiches',
-          url: 'https://maps.app.goo.gl/8nquy3oNdZyohhP6A'
-        },
-        {
-          area: 'St Kilda',
-          name: 'Radio Mexico',
-          notes: 'The only Mexican food I have had outside the US that I genuinely love',
-          type: 'Mexican',
-          url: 'https://maps.app.goo.gl/6ZFv2gMTUo7VN8ZY6'
-        },
-        {
-          area: 'St Kilda',
-          name: 'Rococo',
-          notes: 'Well known but slept on. Huge menu variety and always (I mean always) has a table available last minute',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/tZyv7Wn1D7oGMH6ZA'
-        },
-        {
-          area: 'South Yarra',
-          name: 'Gilson',
-          notes: "Melbourne's version of Bar Totti's, i.e. you rip off pieces of delicious bread and dip it in toppings of your choice. Great pasta too",
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/jHDwJwrtGocZuPqA8'
-        },
-        {
-          area: 'South Yarra',
-          name: "Leonard's House of Love",
-          notes: 'Best fried chicken berder in Melbourne. I used to come here with my coworkers in the early, scrappy days of Vivi so it holds a special place in my heart',
-          type: 'Pub',
-          url: 'https://maps.app.goo.gl/YzUG1E4GR4PHka2K7'
-        },
-        {
-          area: 'South Yarra',
-          name: 'Moose Bar & Café',
-          notes: 'I get a berder and chips here at least once a week, so simple and tasty. Staff are all absolute legends',
-          type: 'Cafes',
-          url: 'https://maps.app.goo.gl/KsoW4EUNhCV99NDo7'
-        },
-        {
-          area: 'South Yarra',
-          name: 'Pink Ginger JP',
-          notes: 'Fresh, delicious Japanese food, a great lunch spot',
-          type: 'Japanese',
-          url: 'https://maps.app.goo.gl/KQdb9YJMA9YxYbh28'
-        },
-        {
-          area: 'South Yarra',
-          name: 'itteki',
-          notes: "Adorable Japanese cafe with some of the nicest staff around, great coffee, and extremely high quality merch of the owner's Shiba Inu. No food or proper seating, but I love this place so much that it has to get a mention",
-          type: 'Cafes',
-          url: 'https://maps.app.goo.gl/arRRrqF1Eo44jaoNA'
+    const triedPlaces = {
+      Australia: {
+        Melbourne: [
+          {
+            area: 'Armadale',
+            name: "Hank's Café & Bagelry",
+            notes: 'Came here because of a TikTok and did not disappoint. Great coffee and pastrami bagel, need to come back for the schnitzel',
+            type: 'Bagels',
+            url: 'https://maps.app.goo.gl/KWFtUbgrURAfaxMZ9'
+          },
+          {
+            area: 'Armadale',
+            name: 'Neighbourhood Pizza',
+            notes: "Haven't had the pasta but the pizza is delicious",
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/GkRp3E7U9TQFKEZbA'
+          },
+          {
+            area: 'Malvern',
+            name: 'Kolonaki',
+            notes: 'Genuinely one of the tastiest places in Melbourne. Wish they would answer the damn phone!',
+            type: 'Greek',
+            url: 'https://maps.app.goo.gl/9JuWQS1p1cespya3A'
+          },
+          {
+            area: 'Bentleigh',
+            name: 'Da Giuseppe',
+            notes: 'Some of my favourite woodfire pizza, really nice family run place',
+            subType: 'Pizza',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/Ee5AVG9Gm8fciTry8'
+          },
+          {
+            area: 'Bentleigh',
+            name: 'Sushi Factory',
+            notes: 'Cheap, delicious sushi. A staple of Centre Rd',
+            type: 'Japanese',
+            url: 'https://maps.app.goo.gl/WRYJVVWQvBjf4vxe9'
+          },
+          {
+            area: 'Bentleigh',
+            name: "Milo's Deli",
+            notes: 'For a while I got a sandwich here every single Friday, they are delicious',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/U9RckXW1xE9atvzC6'
+          },
+          {
+            area: 'McKinnon',
+            name: 'Ohana',
+            notes: 'Delicious woodfired pizza and super friendly staff. Recommended to me by Nat, the CEO of Vivi, and did not disappoint',
+            subType: 'Pizza',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/qR1WsxQX9ZHpjCpr9'
+          },
+          {
+            area: 'Brighton',
+            name: 'Cucina & Co',
+            notes: 'Delicious pizza and pasta. Came back plenty of times even though they made us wait literally an hour for our booked table on our first visit',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/VNPdkSGgdih61W6A7'
+          },
+          {
+            area: 'Brighton',
+            name: 'Saint Martins Café',
+            notes: 'Great coffee and an absolutely delicious beef berder (spoiled somewhat by being served with crisps instead of fries)',
+            type: 'Cafes',
+            url: 'https://maps.app.goo.gl/tffXhHyXH8bGYgUP9'
+          },
+          {
+            area: 'Brighton',
+            name: 'Kokoro',
+            notes: 'Great sushi train, lots of variety and not too expensive',
+            type: 'Japanese',
+            url: 'https://maps.app.goo.gl/jawbgwPnWJYSisZf8'
+          },
+          {
+            area: 'Carlton',
+            name: 'Capitano',
+            notes: 'Deep dish pizza to die for. I think the pasta and tiramisu are kind of overrated but the deep dish more than makes up for it',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/kMfZYJxK9BADeeJv9'
+          },
+          {
+            area: 'CBD',
+            name: 'Five Guys',
+            notes: 'Genuinely my favourite berders in Melbourne. Great milkshakes too',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/67jsqjcVt2SMTRD99'
+          },
+          {
+            area: 'Prahan',
+            name: 'Le Petit Marché',
+            notes: 'Entrecôte steak and sauce in a delicious baguette. Hits the spot every time',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/Q6U1fDVD7GsFMx2VA'
+          },
+          {
+            area: 'Prahan',
+            name: 'Hobba',
+            notes: 'Great coffee + chicken and waffles ❤️',
+            type: 'Cafes',
+            url: 'https://maps.app.goo.gl/BPkJe2DecMmiUtVm7'
+          },
+          {
+            area: 'Prahan',
+            name: 'Marbl',
+            notes: 'Best steak in town, especially for the money. Extremely friendly owner (same for the Port Melbourne one)',
+            type: 'Meat',
+            url: 'https://maps.app.goo.gl/9iVVMhU4F57DQ9PJ7'
+          },
+          {
+            area: 'Richmond',
+            name: "Hector's Deli",
+            notes: 'Beef and pickles toastie is geniuinely to die for, and some of the best glazed donuts I have ever had. Great coffee too',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/8nquy3oNdZyohhP6A'
+          },
+          {
+            area: 'St Kilda',
+            name: 'Radio Mexico',
+            notes: 'The only Mexican food I have had outside the US that I genuinely love',
+            type: 'Mexican',
+            url: 'https://maps.app.goo.gl/6ZFv2gMTUo7VN8ZY6'
+          },
+          {
+            area: 'St Kilda',
+            name: 'Rococo',
+            notes: 'Well known but slept on. Huge menu variety and always (I mean always) has a table available last minute',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/tZyv7Wn1D7oGMH6ZA'
+          },
+          {
+            area: 'South Yarra',
+            name: 'Gilson',
+            notes: "Melbourne's version of Bar Totti's, i.e. you rip off pieces of delicious bread and dip it in toppings of your choice. Great pasta too",
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/jHDwJwrtGocZuPqA8'
+          },
+          {
+            area: 'South Yarra',
+            name: "Leonard's House of Love",
+            notes: 'Best fried chicken berder in Melbourne. I used to come here with my coworkers in the early, scrappy days of Vivi so it holds a special place in my heart',
+            type: 'Pub',
+            url: 'https://maps.app.goo.gl/YzUG1E4GR4PHka2K7'
+          },
+          {
+            area: 'South Yarra',
+            name: 'Moose Bar & Café',
+            notes: 'I get a berder and chips here at least once a week, so simple and tasty. Staff are all absolute legends',
+            type: 'Cafes',
+            url: 'https://maps.app.goo.gl/KsoW4EUNhCV99NDo7'
+          },
+          {
+            area: 'South Yarra',
+            name: 'Pink Ginger JP',
+            notes: 'Fresh, delicious Japanese food, a great lunch spot',
+            type: 'Japanese',
+            url: 'https://maps.app.goo.gl/KQdb9YJMA9YxYbh28'
+          },
+          {
+            area: 'South Yarra',
+            name: 'itteki',
+            notes: "Adorable Japanese cafe with some of the nicest staff around, great coffee, and extremely high quality merch of the owner's Shiba Inu. No food or proper seating, but I love this place so much that it has to get a mention",
+            type: 'Cafes',
+            url: 'https://maps.app.goo.gl/arRRrqF1Eo44jaoNA'
+          }
+        ],
+        Sydney: [
+          {
+            area: 'CBD',
+            name: "Bar Totti's",
+            notes: "Bread w/ toppings and pasta are absolutely out of this world. Will never forget coming here for my friend Mia's birthday in activewear and splitting a $700 bottle of wine",
+            subType: 'Pasta',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/zt85xPo2rgDPbXd16'
+          },
+          {
+            area: 'Bondi',
+            name: "Little L Burgers",
+            notes: 'Known for their chicken berder but I actually think their beef berders are absolutely delicious',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/ssz5aLQTtniMmUYr8'
+          },
+          {
+            area: 'Bondi',
+            name: 'Macelleria',
+            notes: 'Have had the steak, sausages and berders and they are all delicious',
+            type: 'Meat',
+            url: 'https://maps.app.goo.gl/p154765mheEBRCgs9'
+          }
+        ],
+        Torquay: [
+          {
+            name: 'Pond Cafe',
+            notes: 'Brisket sandwich to die for. Salty that they changed its ingredients some time between 2023 and 2023 but it still does the trick',
+            type: 'Cafes',
+            url: 'https://maps.app.goo.gl/emmRAwqHaPQUQXTx9'
+          },
+          {
+            name: 'Pearl',
+            notes: 'Simple, delicious pasta',
+            subType: 'Pasta',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/Dpjkp5aaza5phcDk6'
+          },
+          {
+            name: 'Mortadeli',
+            notes: "The coffee is a bit average, the merch sucks (sorry guys) but the sandwiches are bangin'",
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/UYAC8dq5FtvLeXgW9'
         }
-      ],
-      Sydney: [
-        {
-          area: 'CBD',
-          name: "Bar Totti's",
-          notes: "Bread w/ toppings and pasta are absolutely out of this world. Will never forget coming here for my friend Mia's birthday in activewear and splitting a $700 bottle of wine",
-          subType: 'Pasta',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/zt85xPo2rgDPbXd16'
-        },
-        {
-          area: 'Bondi',
-          name: "Little L Burgers",
-          notes: 'Known for their chicken berder but I actually think their beef berders are absolutely delicious',
-          type: 'Berders',
-          url: 'https://maps.app.goo.gl/ssz5aLQTtniMmUYr8'
-        },
-        {
-          area: 'Bondi',
-          name: 'Macelleria',
-          notes: 'Have had the steak, sausages and berders and they are all delicious',
-          type: 'Steak',
-          url: 'https://maps.app.goo.gl/p154765mheEBRCgs9'
-        }
-      ],
-      Torquay: [
-        {
-          name: 'Pond Cafe',
-          notes: 'Brisket sandwich to die for. Salty that they changed its ingredients some time between 2023 and 2023 but it still does the trick',
-          type: 'Cafes',
-          url: 'https://maps.app.goo.gl/emmRAwqHaPQUQXTx9'
-        },
-        {
-          name: 'Pearl',
-          notes: 'Simple, delicious pasta',
-          subType: 'Pasta',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/Dpjkp5aaza5phcDk6'
-        },
-        {
-          name: 'Mortadeli',
-          notes: "The coffee is a bit average, the merch sucks (sorry guys) but the sandwiches are bangin'",
-          type: 'Sandwiches',
-          url: 'https://maps.app.goo.gl/UYAC8dq5FtvLeXgW9'
-        }
-      ],
-      Florence: [
-        {
-          name: 'Casella 18',
-          notes: 'The single best meal I have ever eaten. Seriously. Pizza, pasta, and tiramisu are all must-orders',
-          type: 'Italian',
-          url: 'https://maps.app.goo.gl/AcvLqwfeNxtoKpQ26'
-        }
-      ],
-      'New York': [
-      {
-          area: 'Manhattan',
-          name: "Katz's Delicatessen",
-          notes: 'Truly lives up to the hype',
-          type: 'Sandwiches',
-          url: 'https://maps.app.goo.gl/sLUQUaj5tACoLfwa6'
-        }
-      ]
+        ],
+      },
+      Italy: {
+        Florence: [
+          {
+            name: 'Casella 18',
+            notes: 'The single best meal I have ever eaten. Seriously. Pizza, pasta, and tiramisu are all must-orders',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/AcvLqwfeNxtoKpQ26'
+          }
+        ]
+      },
+      USA: {
+        'New York': [
+          {
+            area: 'Manhattan',
+            name: "Katz's Delicatessen",
+            notes: 'Truly lives up to the hype',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/sLUQUaj5tACoLfwa6'
+          }
+        ]
+      }
+    };
+    const wantedPlaces = {
+      Australia: {
+        Melbourne: [
+          {
+            area: 'CBD',
+            name: 'Gourmet Curry Hut Indian Cuisine',
+            notes: 'First Google result for "best butter chicken in melbourne"',
+            type: 'Indian',
+            url: 'https://maps.app.goo.gl/Pzo8BzeNhHG2kUrx9'
+          },
+          {
+            area: 'Prahan',
+            name: 'Rossi',
+            notes: 'Tiramisu looks absolutely nuts',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/vXJ9kyNzuVw22Uf86'
+          },
+          {
+            area: 'CBD',
+            name: 'Waffle On',
+            notes: 'The baguette sandwich is so cheap and looks unbelievable',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/TU61p7Zd1ErgdPzy5'
+          },
+          {
+            area: 'Oakleigh',
+            name: 'Mythos Gyros Bar',
+            notes: 'Saw on TikTok and just looks so tasty',
+            type: 'Greek',
+            url: 'https://maps.app.goo.gl/GHv4gC82QorWkKTSA'
+          },
+          {
+            area: 'Windsor',
+            name: "Freddy's",
+            notes: 'Looks like seriously cozy woodfire pizza and beer',
+            subType: 'Pizza',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/zvdNKwFMNFZ7nQi88'
+          },
+          {
+            area: 'Prahan',
+            name: 'Entrecôte',
+            notes: 'Have had the delicious sandwiches from next door (see, Le Petit Marché) and have eaten at the original in Paris, but this one has a far wider menu and was described by a friend as his favourite restaurant in all of Melbourne',
+            type: 'French',
+            url: 'https://maps.app.goo.gl/J1QcFP68ZRLhTWpVA'
+          },
+          {
+            area: 'Carlton',
+            name: "Johnny, Vince and Sam's Ristorante",
+            notes: 'Supposedly super authentic and delicious Italian',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/x7PZhyrJJZPseTLU6'
+          },
+          {
+            area: 'Carlton',
+            name: 'Shooter McGavins',
+            notes: 'The chicken sandwich looks unbelievably good',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/mRHf2JsV5PzSymES6'
+          },
+          {
+            area: 'Richmond',
+            name: 'Pizzeria Da Bruno',
+            notes: 'Looks like tasty, fancy Italian',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/7TCS2UkDNF2M3C1G9'
+          },
+          {
+            area: 'South Yarra',
+            name: 'Caffe e Cucina',
+            notes: 'Looks like expensive, delicious pasta',
+            subType: 'Pasta',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/q8iwFpACLmkQ24fX7'
+          },
+          {
+            area: 'Richmond',
+            name: 'Union House',
+            notes: 'Steak night is meant to go hard',
+            type: 'Meat',
+            url: 'https://maps.app.goo.gl/QEAkKjWNR4Av1xMh7'
+          }
+        ],
+        Sydney: [
+          {
+            area: 'Double Bay',
+            name: 'Matteo',
+            notes: 'Have heard the pasta and tiramisu are great',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/gSVWzikWQk516vmK6'
+          },
+          {
+            area: 'Moore Park',
+            name: "Mary's",
+            notes: "An American on TikTok said this was the closest thing he's had in Australia to an American chicken sandwich",
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/ZWATLum34VGrtShp7'
+          },
+          {
+            area: 'Rosebery',
+            name: 'Kostas Takeaway',
+            notes: 'Seen on TikTok, sandwiches look really tasty',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/rkQrCRzT7W2GgDbX8'
+          }
+        ],
+      },
+      UK: {
+        London: [
+          {
+            area: 'Shoreditch',
+            name: 'Butchies',
+            notes: 'The fried chicken looks absolutely unbelievable',
+            type: 'Fried Chicken',
+            url: 'https://maps.app.goo.gl/APp72NxB3UpA9ZuP7'
+          },
+          {
+            area: 'Soho',
+            name: 'Supernova',
+            notes: 'The berders and ice cream look fantastic',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/eoomAzFr63U7QUkj9'
+          }
+        ]
+      },
+      USA: {
+        Austin: [
+          {
+            name: 'Franklin Barbacue',
+            notes: 'Supposed to be the best BBQ in the world',
+            type: 'Meat',
+            url: 'https://maps.app.goo.gl/yGd7fMYYMH3jw4pq8'
+          }
+        ],
+        'Los Angeles': [
+          {
+            area: 'Silver Lake',
+            name: 'The Win~Dow',
+            notes: 'I absolutely love smash berders, and these are meant to be some of the best in LA',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/sMusoBKPDDmMJPjX8'
+          },
+          {
+            area: 'Studio City',
+            name: 'Easy Street Burgers',
+            notes: 'Have seen multiple huge food TikTokers saying they are the best berders in LA',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/1EmUHmqriAbfhary7'
+          },
+          {
+            area: 'Venice',
+            name: 'El Primo Taco',
+            notes: 'Meant to be some of the best tacos in LA',
+            type: 'Mexican',
+            url: 'https://maps.app.goo.gl/VXCCW6Gy1wigvxXy9'
+          }
+        ],
+        'New York': [
+          {
+            area: 'Manhattan',
+            name: '4 Charles Prime Rib',
+            notes: 'Meant to be the best berder in NYC, and the truffle mac and cheese + chocolate pie look absolutely unbelievable',
+            type: 'Meat',
+            url: 'https://maps.app.goo.gl/tPUxEgewTZcFJfm27'
+          },
+          {
+            area: 'Manhattan',
+            name: "Mama's TOO!",
+            notes: 'Meant to be some of the best pizza in NYC',
+            subType: 'Pizza',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/GMcUCepVJiWGz5Ua9'
+          }
+        ]
+      }
     };
 
     const cityElement = document.getElementById('city');
-    cityElement.value = localStorage.getItem('city') || 'Melbourne';
+    let selectedCity = localStorage.getItem('city') || 'Melbourne';
+    cityElement.value = selectedCity;
     cityElement.addEventListener('change', (event) => {
+      selectedCity = event.target.value;
       setPlaces();
-      localStorage.setItem('city', event.target.value);
+      localStorage.setItem('city', selectedCity);
     });
 
     const categoryElement = document.getElementById('category');
@@ -364,15 +546,55 @@
       localStorage.setItem('category', event.target.value);
     });
 
+    const statusElement = document.getElementById('status');
+    statusElement.value = localStorage.getItem('status') || 'tried';
+    statusElement.addEventListener('change', (event) => {
+      setCities();
+      setPlaces();
+      localStorage.setItem('status', event.target.value);
+    });
+
+    const getRawPlaces = () => statusElement.value === 'wanted' ? wantedPlaces : triedPlaces;
+    const setCities = () => {
+      cityElement.innerHTML = '';
+
+      const rawPlaces = getRawPlaces();
+      Object.entries(rawPlaces).forEach(([country, cities]) => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = country;
+
+        Object.keys(cities).forEach((city) => {
+          const option = document.createElement('option');
+          option.value = option.innerText = city;
+
+          optgroup.appendChild(option);
+        });
+
+        cityElement.appendChild(optgroup);
+      });
+
+      cityElement.value = selectedCity;
+    };
+    setCities();
+
     const placesContainerElement = document.getElementById('placesContainer');
     const setPlaces = () => {
-      const selectedCity = cityElement.value;
-      const places = placesByCity[selectedCity];
+      const rawPlaces = getRawPlaces();
+      const allCities = Object.values(rawPlaces).flatMap((places) => Object.keys(places));
+      if (!allCities.includes(selectedCity)) {
+        selectedCity = allCities[0];
+        cityElement.value = selectedCity;
+        localStorage.setItem('city', selectedCity);
+      }
+
       const headingKey = categoryElement.value;
 
       placesContainerElement.innerHTML = '';
 
-      const sortedPlaces = [...places].sort((a, b) => {
+      const selectedPlaces = Object.values(rawPlaces)
+        .flatMap((cityCollections) => Object.entries(cityCollections))
+        .find(([city]) => city === selectedCity)[1]
+      const sortedPlaces = [...selectedPlaces].sort((a, b) => {
         if (a[headingKey] > b[headingKey]) {
           return 1;
         }
@@ -430,6 +652,7 @@
         placesContainerElement.appendChild(placesElement);
       }
     };
+
     setPlaces();
   </script>
 </body>

@@ -85,6 +85,7 @@
 </head>
 <body>
   <div class="title">Dean's Favourite Eats</div>
+  <div><span id="numPlaces">n</span> entries and counting</div>
   <div class="body">
     <div class="sorting">
       <div>
@@ -713,6 +714,15 @@
       // leave default
     }
 
+    const getRawPlaces = (status = statusElement.value) => status === 'wanted' ? wantedPlaces : triedPlaces;
+
+    const numPlacesElement = document.getElementById('numPlaces');
+    const numPlaces = ['wanted', 'tried'].reduce((count, status) => {
+      const rawPlaces = getRawPlaces(status);
+      return count + Object.values(rawPlaces).flatMap((places) => Object.values(places).flat()).length;
+    }, 0);
+    numPlacesElement.innerText = numPlaces;
+
     const cityElement = document.getElementById('city');
     let selectedCity = hashData.city || localStorage.getItem('city') || 'Melbourne';
     cityElement.value = selectedCity;
@@ -737,7 +747,6 @@
       localStorage.setItem('status', event.target.value);
     });
 
-    const getRawPlaces = () => statusElement.value === 'wanted' ? wantedPlaces : triedPlaces;
     const setCities = () => {
       cityElement.innerHTML = '';
 
@@ -748,7 +757,8 @@
 
         Object.keys(cities).forEach((city) => {
           const option = document.createElement('option');
-          option.value = option.innerText = city;
+          option.value = city;
+          option.innerText = `${city} (${cities[city].length})`;
 
           optgroup.appendChild(option);
         });

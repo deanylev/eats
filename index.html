@@ -78,7 +78,7 @@
       padding: 15px 20px;
     }
 
-    #placesContainer > div > div > .area {
+    #placesContainer > div > div > .areaOrType {
       font-style: italic;
     }
   </style>
@@ -115,6 +115,7 @@
     const emojisByType = {
       American: '🇺🇸',
       Australian: '🦘',
+      BBQ: '🍖',
       Bagels: '🥯',
       Bakery: '🍞',
       Berders: '🍔',
@@ -129,10 +130,10 @@
       Indian: '🇮🇳',
       Italian: '🍝🍕',
       Japanese: '🍣',
-      Meat: '🥩',
       Mexican: '🌮',
       Pub: '🍻',
       Sandwiches: '🥖',
+      Steak: '🥩',
     };
     const emojisBySubType = {
       Pasta: '🍝',
@@ -245,7 +246,7 @@
             area: 'Prahan',
             name: 'Marbl',
             notes: 'Best steak in town, especially for the money. Extremely friendly owner (same for the Port Melbourne one)',
-            type: 'Meat',
+            type: 'Steak',
             url: 'https://maps.app.goo.gl/9iVVMhU4F57DQ9PJ7'
           },
           {
@@ -310,7 +311,7 @@
             area: 'Red Hill',
             name: 'Red Gum BBQ',
             notes: 'Not technically in Rye but a close enough drive if you are staying there. Absolutely delicious BBQ meats + mac and cheese. Would love to try dessert next time.',
-            type: 'Meat',
+            type: 'BBQ',
             url: 'https://maps.app.goo.gl/PkLpJ66hbdJecGte6'
           },
           {
@@ -341,7 +342,7 @@
             area: 'Bondi',
             name: 'Macelleria',
             notes: 'Have had the steak, sausages and berders and they are all delicious',
-            type: 'Meat',
+            type: 'Steak',
             url: 'https://maps.app.goo.gl/p154765mheEBRCgs9'
           }
         ],
@@ -491,7 +492,7 @@
             area: 'Richmond',
             name: 'Union House',
             notes: 'Wednesday steak night is meant to go hard',
-            type: 'Meat',
+            type: 'Steak',
             url: 'https://maps.app.goo.gl/QEAkKjWNR4Av1xMh7'
           },
           {
@@ -598,7 +599,7 @@
           {
             name: 'Franklin Barbacue',
             notes: 'Supposed to be the best BBQ in the world',
-            type: 'Meat',
+            type: 'BBQ',
             url: 'https://maps.app.goo.gl/yGd7fMYYMH3jw4pq8'
           }
         ],
@@ -658,7 +659,7 @@
             area: 'Manhattan',
             name: '4 Charles Prime Rib',
             notes: 'Meant to be the best berder in NYC, and the truffle mac and cheese + chocolate pie look absolutely unbelievable',
-            type: 'Meat',
+            type: 'Steak',
             url: 'https://maps.app.goo.gl/tPUxEgewTZcFJfm27'
           },
           {
@@ -884,11 +885,11 @@
           notesElement.innerText = place.notes;
 
           placeElement.appendChild(emojiElement);
-          if (headingKey === 'type' && place.area) {
-            const areaElement = document.createElement('span');
-            areaElement.innerText = place.area;
-            areaElement.className = 'area';
-            placeElement.appendChild(areaElement);
+          if (headingKey === 'type' && place.area || headingKey === 'area') {
+            const areaOrTypeElement = document.createElement('span');
+            areaOrTypeElement.innerText = headingKey === 'type' ? place.area : (place.subType || place.type);
+            areaOrTypeElement.className = 'areaOrType';
+            placeElement.appendChild(areaOrTypeElement);
           }
           placeElement.appendChild(notesElement);
 

@@ -121,6 +121,7 @@
       Berders: '🍔',
       Cafes: '☕️',
       Cookies: '🍪',
+      Diner: '🥞',
       Dutch: '🇳🇱',
       French: '🇫🇷',
       'Fried Chicken': '🍗',
@@ -128,17 +129,14 @@
       Greek: '🇬🇷',
       'Ice Cream': '🍦',
       Indian: '🇮🇳',
-      Italian: '🍝🍕',
+      Italian: '🍝',
       Japanese: '🍣',
       Mexican: '🌮',
+      Pizza: '🍕',
       Pub: '🍻',
       Sandwiches: '🥖',
       Steak: '🥩',
       Thai: '🇹🇭'
-    };
-    const emojisBySubType = {
-      Pasta: '🍝',
-      Pizza: '🍕'
     };
     const triedPlaces = {
       Australia: {
@@ -168,8 +166,7 @@
             area: 'Bentleigh',
             name: 'Da Giuseppe',
             notes: 'Some of my favourite woodfire pizza, really nice family run place',
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/Ee5AVG9Gm8fciTry8'
           },
           {
@@ -190,8 +187,7 @@
             area: 'McKinnon',
             name: 'Ohana',
             notes: 'Delicious woodfired pizza and super friendly staff. Recommended to me by Nat, the CEO of Vivi, and did not disappoint',
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/qR1WsxQX9ZHpjCpr9'
           },
           {
@@ -335,7 +331,6 @@
             area: 'CBD',
             name: "Bar Totti's",
             notes: "Bread w/ toppings and pasta are absolutely out of this world. Will never forget coming here for my friend Mia's birthday in activewear and splitting a $700 bottle of wine",
-            subType: 'Pasta',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/zt85xPo2rgDPbXd16'
           },
@@ -364,7 +359,6 @@
           {
             name: 'Pearl',
             notes: 'Simple, delicious pasta',
-            subType: 'Pasta',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/Dpjkp5aaza5phcDk6'
           },
@@ -456,8 +450,7 @@
             area: 'Windsor',
             name: "Freddy's",
             notes: 'Looks like seriously cozy woodfire pizza and beer',
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/zvdNKwFMNFZ7nQi88'
           },
           {
@@ -492,7 +485,6 @@
             area: 'South Yarra',
             name: 'Caffe e Cucina',
             notes: 'Looks like expensive, delicious pasta',
-            subType: 'Pasta',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/q8iwFpACLmkQ24fX7'
           },
@@ -542,9 +534,15 @@
             area: 'Thornbury',
             name: '1800 Lasagne',
             notes: 'Garlic bread and lasagne look so good',
-            subType: 'Pasta',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/mQFeZACcWwZC8AUu5'
+          },
+          {
+            area: 'Collingwood',
+            name: 'Stefanino Panino',
+            notes: 'Looks like a great deli-style sandwich place',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/FPndwCLgARnuaBe16'
           }
         ],
         Sydney: [
@@ -635,8 +633,7 @@
           {
             name: "Pequod's Pizza",
             notes: 'Supposedly the best deep dish pizza around',
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/PWdFbDdrhJQTaFZU8'
           }
         ],
@@ -682,8 +679,7 @@
             area: 'Manhattan',
             name: "Mama's TOO!",
             notes: 'Meant to be some of the best pizza in NYC',
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/GMcUCepVJiWGz5Ua9'
           },
           {
@@ -704,8 +700,7 @@
             area: 'Manhattan',
             name: "Joe's Pizza",
             notes: "Some claim it's overrated, want to find out for myself",
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/B2MxSa2phJvsAWjj7'
           },
           {
@@ -733,8 +728,7 @@
             area: 'Brooklyn',
             name: "L'Industrie Pizzeria",
             notes: 'Pizza so absurdly good. They also have great looking sandwiches on a Wednesday, and great looking desserts',
-            subType: 'Pizza',
-            type: 'Italian',
+            type: 'Pizza',
             url: 'https://maps.app.goo.gl/mbDmF1sKrK3TNZ6h7'
           },
           {
@@ -771,6 +765,41 @@
             notes: 'Italian food that is 4.5 out of 15k reviews, nuff said',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/rADoSKGvhJK9carE9'
+          },
+          {
+            area: 'Manhattan',
+            name: 'Prince Street Pizza',
+            notes: 'S Q U A R E',
+            type: 'Pizza',
+            url: 'https://maps.app.goo.gl/vmFTPcT31DHyVPA67'
+          },
+          {
+            area: 'Manhattan',
+            name: "Ellen's Stardust Diner",
+            notes: 'I am dying to try a proper American diner and this one has almost 18k reviews',
+            type: 'Diner',
+            url: 'https://maps.app.goo.gl/AQFYhGK6Q3pR3Ppb9'
+          },
+          {
+            area: 'Manhattan',
+            name: "Tom's",
+            notes: "I only want to go here because it's the Seinfeld diner",
+            type: 'Diner',
+            url: 'https://maps.app.goo.gl/TsJ9AFV63zsQmQkT6'
+          },
+          {
+            area: 'Manhattan',
+            name: 'Fiaschetteria "Pistoia"',
+            notes: 'This place is "Tuscan" according to Google, whatever that actually means',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/DHARFMbRU9FRJYCr9'
+          },
+          {
+            area: 'Manhattan',
+            name: "Raising Canes's Chicken Fingers",
+            notes: 'Completely forgot to try this last time I was in NYC and forever kicking myself (I love fast food lol)',
+            type: 'Fried Chicken',
+            url: 'https://maps.app.goo.gl/DHARFMbRU9FRJYCr9'
           }
         ]
       }
@@ -887,7 +916,7 @@
       for (const [heading, places] of Object.entries(placesByHeading)) {
         const headingElement = document.createElement('span');
         headingElement.className = 'heading';
-        headingElement.innerText = heading;
+        headingElement.innerText = `${headingKey === 'type' ? `${emojisByType[heading]} ` : ''}${heading}`;
         placesContainerElement.appendChild(headingElement);
 
         const placesElement = document.createElement('div');
@@ -895,7 +924,9 @@
           const placeElement = document.createElement('div');
 
           const emojiElement = document.createElement('span');
-          emojiElement.innerText = emojisBySubType[place.subType] || emojisByType[place.type];
+          if (headingKey === 'area') {
+            emojiElement.innerText = emojisByType[place.type];
+          }
 
           const subHeadingElement = document.createElement('a');
           subHeadingElement.className = 'subHeading';
@@ -910,7 +941,7 @@
           placeElement.appendChild(emojiElement);
           if (headingKey === 'type' && place.area || headingKey === 'area') {
             const areaOrTypeElement = document.createElement('span');
-            areaOrTypeElement.innerText = headingKey === 'type' ? place.area : (place.subType || place.type);
+            areaOrTypeElement.innerText = headingKey === 'type' ? place.area : place.type;
             areaOrTypeElement.className = 'areaOrType';
             placeElement.appendChild(areaOrTypeElement);
           }

@@ -328,18 +328,18 @@
         ],
         Sydney: [
           {
-            area: 'CBD',
+            area: ['CBD', 'Bondi'],
             name: "Bar Totti's",
             notes: "Bread w/ toppings and pasta are absolutely out of this world. Will never forget coming here for my friend Mia's birthday in activewear and splitting a $700 bottle of wine",
             type: 'Italian',
-            url: 'https://maps.app.goo.gl/zt85xPo2rgDPbXd16'
+            url: 'https://merivale.com/venues/bar-tottis/'
           },
           {
-            area: 'Bondi',
+            area: ['Bondi', 'Coogee'],
             name: "Little L Burgers",
             notes: 'Known for their chicken berder but I actually think their beef berders are absolutely delicious',
             type: 'Berders',
-            url: 'https://maps.app.goo.gl/ssz5aLQTtniMmUYr8'
+            url: 'https://little-l.com.au'
           },
           {
             area: 'Bondi',
@@ -547,18 +547,18 @@
         ],
         Sydney: [
           {
-            area: 'Double Bay',
+            area: ['CBD', 'Double Bay'],
             name: 'Matteo',
             notes: 'Have heard the pasta and tiramisu are great',
             type: 'Italian',
-            url: 'https://maps.app.goo.gl/gSVWzikWQk516vmK6'
+            url: 'https://www.matteosydney.com'
           },
           {
-            area: 'Moore Park',
+            area: ['Moore Park', 'Circular Quay', 'Newtown'],
             name: "Mary's",
             notes: "An American on TikTok said this was the closest thing he's had in Australia to an American chicken sandwich",
             type: 'Berders',
-            url: 'https://maps.app.goo.gl/ZWATLum34VGrtShp7'
+            url: 'https://www.marys.wtf'
           },
           {
             area: 'Rosebery',
@@ -907,8 +907,8 @@
 
       const selectedPlaces = [
         ...Object.values(rawPlaces)
-        .flatMap((cityCollections) => Object.entries(cityCollections))
-        .find(([city]) => city === selectedCity)[1]
+          .flatMap((cityCollections) => Object.entries(cityCollections))
+          .find(([city]) => city === selectedCity)[1]
       ];
 
       if (headingKey === 'area') {

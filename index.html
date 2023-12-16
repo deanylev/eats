@@ -92,10 +92,15 @@
         <label for="city">City:</label>
         <select id="city"></select>
       </div>
+      <div id="mealTypeContainer">
+        <label for="mealType">Meal Type:</label>
+        <select id="mealType"></select>
+      </div>
       <div>
         <label for="category">Categorise By:</label>
         <select id="category">
           <option value="area">Area</option>
+          <option id="mealTypeCategory" value="mealType">Meal Type</option>
           <option value="type">Type of Food</option>
         </select>
       </div>
@@ -1024,11 +1029,22 @@
     cityElement.value = selectedCity;
     cityElement.addEventListener('change', (event) => {
       selectedCity = event.target.value;
-      setPlaces();
+      setPlaces(true);
       localStorage.setItem('city', selectedCity);
     });
 
+    const mealTypeContainerElement = document.getElementById('mealTypeContainer');
+    const mealTypeElement = document.getElementById('mealType');
+    let selectedMealType = hashData.mealType || localStorage.getItem('mealType') || 'Any';
+    mealTypeElement.value = selectedMealType;
+    mealTypeElement.addEventListener('change', (event) => {
+      selectedMealType = event.target.value;
+      setPlaces();
+      localStorage.setItem('mealType', selectedMealType);
+    });
+
     const categoryElement = document.getElementById('category');
+    const mealTypeCategoryElement = document.getElementById('mealTypeCategory');
     categoryElement.value = hashData.category || localStorage.getItem('category') || 'area';
     categoryElement.addEventListener('change', (event) => {
       setPlaces();
@@ -1039,7 +1055,7 @@
     statusElement.value = hashData.status || localStorage.getItem('status') || 'tried';
     statusElement.addEventListener('change', (event) => {
       setCities();
-      setPlaces();
+      setPlaces(true);
       localStorage.setItem('status', event.target.value);
     });
 
@@ -1069,7 +1085,7 @@
     setCities();
 
     const placesContainerElement = document.getElementById('placesContainer');
-    const setPlaces = () => {
+    const setPlaces = (updateMealTypes) => {
       const rawPlaces = getRawPlaces();
       const allCities = Object.values(rawPlaces).flatMap((places) => Object.keys(places));
       if (!allCities.includes(selectedCity)) {
@@ -1081,6 +1097,7 @@
       location.hash = encodeURIComponent(JSON.stringify({
         category: categoryElement.value,
         city: selectedCity,
+        mealType: selectedMealType,
         status: statusElement.value
       }));
 
@@ -1088,33 +1105,110 @@
 
       placesContainerElement.innerHTML = '';
 
-      const selectedPlaces = [
+      let selectedPlaces = [
         ...Object.values(rawPlaces)
           .flatMap((cityCollections) => Object.entries(cityCollections))
           .find(([city]) => city === selectedCity)[1]
       ];
+      const mealTypes = new Set(selectedPlaces.flatMap(({ mealType }) => mealType));
+      if (!mealTypes.has(selectedMealType)) {
+        selectedMealType = 'Any';
+        updateMealTypes = true;
+      }
 
-      if (headingKey === 'area') {
-        const withMultipleAreas = selectedPlaces.filter(({ area }) => Array.isArray(area));
-        withMultipleAreas.forEach((place) => {
+      if (selectedMealType === 'Any') {
+        mealTypeCategoryElement.style.removeProperty('display');
+      } else {
+        mealTypeCategoryElement.style.display = 'none';
+      }
+
+      if (headingKey === 'mealType') {
+        mealTypeContainerElement.style.display = 'none';
+      } else {
+        mealTypeContainerElement.style.removeProperty('display');
+      }
+
+      if (updateMealTypes) {
+        mealTypeElement.innerHTML = '';
+
+        const sortedMealTypes = [...mealTypes].sort((a, b) => {
+          if (a === 'Snacc' && b !== 'Snacc') {
+            return -1;
+          }
+
+          if (b === 'Snacc' && a !== 'Snacc') {
+            return 1;
+          }
+
+          if (a > b) {
+            return 1;
+          }
+
+          if (b > a) {
+            return -1;
+          }
+
+          return 0;
+        });
+        ['Any', ...sortedMealTypes].forEach((mealType) => {
+          const option = document.createElement('option');
+          option.innerText = option.value = mealType;
+
+          mealTypeElement.appendChild(option);
+        });
+
+        mealTypeElement.value = selectedMealType;
+      }
+
+      if (selectedMealType !== 'Any') {
+        selectedPlaces = selectedPlaces.filter(({ mealType }) => {
+          if (Array.isArray(mealType)) {
+            return mealType.includes(selectedMealType);
+          }
+
+          return mealType === selectedMealType;
+        });
+      }
+
+      if (headingKey === 'area' || headingKey === 'mealType') {
+        const withMultiple = selectedPlaces.filter((place) => Array.isArray(place[headingKey]));
+        withMultiple.forEach((place) => {
           // can't use index arg here since we are splicing on each iteration
           selectedPlaces.splice(selectedPlaces.indexOf(place), 1);
-          const { area: areas, ...rest } = place;
-          areas.forEach((area) => {
+          const { [headingKey]: values, ...rest } = place;
+          values.forEach((value) => {
             selectedPlaces.push({
               ...rest,
-              area
+              [headingKey]: value
             });
           });
         });
       }
 
       const sortedPlaces = cloneAndSort(selectedPlaces, (a, b) => {
+        if (headingKey === 'mealType') {
+          if (a[headingKey] === 'Snacc' && b[headingKey] !== 'Snacc') {
+            return -1;
+          }
+
+          if (b[headingKey] === 'Snacc' && a[headingKey] !== 'Snacc') {
+            return 1;
+          }
+        }
+
         if (a[headingKey] > b[headingKey]) {
           return 1;
         }
 
         if (b[headingKey] > a[headingKey]) {
+          return -1;
+        }
+
+        if (a.name > b.name) {
+          return 1;
+        }
+
+        if (b.name > a.name) {
           return -1;
         }
 
@@ -1141,7 +1235,7 @@
           const placeElement = document.createElement('div');
 
           const emojiElement = document.createElement('span');
-          if (headingKey === 'area') {
+          if (headingKey !== 'type') {
             emojiElement.innerText = emojisByType[place.type];
           }
 
@@ -1156,9 +1250,16 @@
           notesElement.innerText = place.notes;
 
           placeElement.appendChild(emojiElement);
-          if (headingKey === 'type' && place.area || headingKey === 'area') {
+          if (headingKey !== 'type' || place.area) {
             const areaOrTypeElement = document.createElement('span');
-            areaOrTypeElement.innerText = headingKey === 'type' ? (Array.isArray(place.area) ? cloneAndSort(place.area).join(', ') : place.area) : place.type;
+            const maybeArrayToString = (maybeArray) => (Array.isArray(maybeArray) ? cloneAndSort(maybeArray).join(', ') : maybeArray);
+            const areaString = maybeArrayToString(place.area);
+            areaOrTypeElement.innerText = headingKey === 'type' ? areaString : place.type;
+            if (headingKey === 'mealType') {
+              areaOrTypeElement.innerText += ` (${areaString})`;
+            } else if (place.mealType !== 'Snacc' && selectedMealType === 'Any') {
+              areaOrTypeElement.innerText += ` (${maybeArrayToString(place.mealType)})`;
+            }
             areaOrTypeElement.className = 'areaOrType';
             placeElement.appendChild(areaOrTypeElement);
           }
@@ -1170,7 +1271,7 @@
       }
     };
 
-    setPlaces();
+    setPlaces(true);
   </script>
 </body>
 </html>

@@ -92,7 +92,7 @@
         <label for="city">City:</label>
         <select id="city"></select>
       </div>
-      <div id="mealTypeContainer">
+      <div>
         <label for="mealType">Meal Type:</label>
         <select id="mealType"></select>
       </div>
@@ -1057,7 +1057,6 @@
       localStorage.setItem('city', selectedCity);
     });
 
-    const mealTypeContainerElement = document.getElementById('mealTypeContainer');
     const mealTypeElement = document.getElementById('mealType');
     let selectedMealType = hashData.mealType || localStorage.getItem('mealType') || 'Any';
     mealTypeElement.value = selectedMealType;
@@ -1140,17 +1139,8 @@
         updateMealTypes = true;
       }
 
-      if (selectedMealType === 'Any') {
-        mealTypeCategoryElement.style.removeProperty('display');
-      } else {
-        mealTypeCategoryElement.style.display = 'none';
-      }
-
-      if (headingKey === 'mealType') {
-        mealTypeContainerElement.style.display = 'none';
-      } else {
-        mealTypeContainerElement.style.removeProperty('display');
-      }
+      mealTypeCategoryElement.disabled = selectedMealType !== 'Any';
+      mealTypeElement.disabled = headingKey === 'mealType';
 
       if (updateMealTypes) {
         mealTypeElement.innerHTML = '';

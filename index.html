@@ -495,6 +495,32 @@
         ]
       },
       USA: {
+        'Los Angeles': [
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Shake Shack',
+            notes: 'Easily one of the best fast food berders around',
+            type: 'Berders',
+            url: 'https://shakeshack.com'
+          },
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'In-N-Out',
+            notes: 'This was my first taste of fast food in America when I was 15 and I made my brother Craig drive me to it every single day',
+            type: 'Berders',
+            url: 'https://www.in-n-out.com'
+          },
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Popeyes Louisiana Kitchen',
+            notes: 'Only got a chance to try the chicken sandwich but wow was it good, leagues above Chick-fil-A imo',
+            type: 'Fried Chicken',
+            url: 'https://www.popeyes.com'
+          }
+        ],
         'New York': [
           {
             area: 'Downtown',
@@ -701,6 +727,14 @@
             notes: 'Homey-looking place tucked away in a laneway, food looks delicious',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/Pf6NTAikn7c1TqrF6'
+          },
+          {
+            area: 'Bentleigh',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Markos Greek Kitchen Bar',
+            notes: 'Have tried Alati just down the road, and took issue with the price, portion size, lack of mixed gyros option, and mutual exclusivity between chips and pita. This place appears to solves all of that',
+            type: 'Greek',
+            url: 'https://maps.app.goo.gl/5Bm32F29wKHhzdiQ7'
           }
         ],
         Sydney: [
@@ -1034,7 +1068,7 @@
       for (const status of ['wanted', 'tried']) {
         const rawPlaces = getRawPlaces(status);
         const flattenedRawPlaces = flattenRawPlaces(rawPlaces);
-        const failsTest = flattenedRawPlaces.filter(({ area, url }) => Array.isArray(area) && url.includes('maps')).map(({ name }) => name);
+        const failsTest = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere') && url.includes('maps')).map(({ name }) => name);
         if (failsTest.length > 0) {
           throw new Error(`places with multiple locations must link to website (see ${failsTest.join(', ')})`);
         }

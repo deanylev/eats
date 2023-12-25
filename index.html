@@ -85,7 +85,7 @@
 </head>
 <body>
   <div class="title">Dean's Favourite Eats</div>
-  <div><span id="numPlaces">n</span> entries and counting</div>
+  <div><span id="numPlacesTried">n</span> places tried, <span id="numPlacesWanted">n</span> wanting to try, and counting!</div>
   <div class="body">
     <div class="sorting">
       <div>
@@ -1241,12 +1241,8 @@
       }
     }
 
-    const numPlacesElement = document.getElementById('numPlaces');
-    const numPlaces = ['wanted', 'tried'].reduce((count, status) => {
-      const rawPlaces = getRawPlaces(status);
-      return count + flattenRawPlaces(rawPlaces).length;
-    }, 0);
-    numPlacesElement.innerText = numPlaces;
+    document.getElementById('numPlacesTried').innerText = flattenRawPlaces(getRawPlaces('tried')).length;
+    document.getElementById('numPlacesWanted').innerText = flattenRawPlaces(getRawPlaces('wanted')).length;
 
     const cityElement = document.getElementById('city');
     let selectedCity = hashData.city || localStorage.getItem('city') || 'Melbourne';

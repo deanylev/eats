@@ -43,6 +43,9 @@
       font-size: 20px;
       font-weight: 700;
       padding-left: 5px;
+    }
+
+    a.subHeading {
       text-decoration: underline;
     }
 
@@ -109,6 +112,7 @@
         <select id="status">
           <option value="tried">Tried</option>
           <option value="wanted">Want to Try</option>
+          <option value="noGood">👎</option>
         </select>
       </div>
     </div>
@@ -928,7 +932,7 @@
             area: 'CBD',
             mealType: 'Snacc',
             name: 'Publique Bakery',
-            notes: 'This is technically in Preston but they are opening in Queen VIC market soon™, croissaints and other pastries look amazing',
+            notes: 'This is technically in Preston but they are opening in Queen VIC market soon™, croissants and other pastries look amazing',
             type: 'Bakery',
             url: 'https://publiquebakery.com.au/'
           },
@@ -1396,6 +1400,44 @@
         ]
       }
     };
+    const noGoodPlaces = {
+      Australia: {
+        Melbourne: [
+          {
+            area: 'Brunswick',
+            mealType: 'Snacc',
+            name: "Luther's Scoops",
+            notes: 'The dark chocolate ice cream was really quite good, but the malted vanilla was gross, and the trek and crazy long wait just make it not worth it over something like Messina',
+            type: 'Ice Cream'
+          },
+          {
+            area: 'Carlton',
+            mealType: 'Lunch',
+            name: 'Shooter McGavins',
+            notes: 'The fried chicken sandwich had great breading, but it had absolutely no flavour and was quite greasy',
+            type: 'Sandwiches'
+          }
+        ]
+      },
+      USA: {
+        'Los Angeles': [
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Chick-fil-A',
+            notes: "Really overhyped, the chicken was flavourless and soggy, Popeyes dunks on it. I had it when I was 15 and remember enjoying it so I'm definitely willing to give it another try",
+            type: 'Fried Chicken'
+          },
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Chipotle',
+            notes: 'Really not sure what the obsession with this is, it tastes a lot like Zambrero, which is fine, but authentic amazing Mexican food is everywhere in California and way cheaper',
+            type: 'Mexican'
+          }
+        ]
+      }
+    };
 
     let hashData = {};
     try {
@@ -1404,7 +1446,17 @@
       // leave default
     }
 
-    const getRawPlaces = (status = statusElement.value) => status === 'wanted' ? wantedPlaces : triedPlaces;
+    const getRawPlaces = (status = statusElement.value) => {
+      if (status === 'wanted') {
+        return wantedPlaces;
+      }
+
+      if (status === 'noGood') {
+        return noGoodPlaces;
+      }
+
+      return triedPlaces;
+    };
     const flattenRawPlaces = (rawPlaces) => Object.values(rawPlaces).flatMap((places) => Object.values(places).flat());
 
     // tests lol
@@ -1639,10 +1691,15 @@
             emojiElement.innerText = emojisByType[place.type];
           }
 
-          const subHeadingElement = document.createElement('a');
+          let subHeadingElement;
+          if (place.url) {
+            subHeadingElement = document.createElement('a');
+            subHeadingElement.href = place.url;
+            subHeadingElement.target = '_blank';
+          } else {
+            subHeadingElement = document.createElement('span');
+          }
           subHeadingElement.className = 'subHeading';
-          subHeadingElement.href = place.url;
-          subHeadingElement.target = '_blank';
           subHeadingElement.innerText = place.name;
           emojiElement.appendChild(subHeadingElement);
 

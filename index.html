@@ -57,6 +57,42 @@
       padding: 3px 0;
     }
 
+    #filtersContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+      max-width: 500px;
+    }
+
+    #filtersContainer:empty {
+      display: none;
+    }
+
+    #filtersContainer > label {
+      display: flex;
+      gap: 2px;
+    }
+
+    #filtersContainer:empty + .filterControls {
+      display: none;
+    }
+
+    .filterControls {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .filterControls > button {
+      background: transparent;
+      border: 0;
+      color: #e8a61a;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
     #placesContainer {
       align-items: flex-start;
       display: flex;
@@ -114,6 +150,11 @@
           <option value="wanted">Want to Try</option>
           <option value="noGood">👎</option>
         </select>
+      </div>
+      <div id="filtersContainer"></div>
+      <div class="filterControls">
+        <button data-type="clearAll">Clear All</button>
+        <button data-type="selectAll">Select All</button>
       </div>
     </div>
     <div id="placesContainer"></div>
@@ -1673,12 +1714,15 @@
       }
     };
 
-    let hashData = {};
-    try {
-      hashData = JSON.parse(decodeURIComponent(location.hash.slice(1)));
-    } catch {
-      // leave default
-    }
+    const tryParseJson = (string, def) => {
+      try {
+        return JSON.parse(string);
+      } catch {
+        return def;
+      }
+    };
+
+    const hashData = tryParseJson(decodeURIComponent(location.hash.slice(1)), {});
 
     const getRawPlaces = (status = statusElement.value) => {
       if (status === 'wanted') {
@@ -1720,11 +1764,29 @@
     document.getElementById('numPlacesTried').innerText = flattenRawPlaces(getRawPlaces('tried')).length;
     document.getElementById('numPlacesWanted').innerText = flattenRawPlaces(getRawPlaces('wanted')).length;
 
+    const filtersContainerElement = document.getElementById('filtersContainer');
+    const filters = new Set();
+    const excluded = new Set(hashData.excluded || tryParseJson(localStorage.getItem('excluded'), []));
+    document.querySelectorAll('.filterControls > button').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        if (event.target.dataset.type === 'clearAll') {
+          filters.forEach((filter) => {
+            excluded.add(filter);
+          });
+        } else {
+          excluded.clear();
+        }
+
+        setPlaces();
+      });
+    });
+
     const cityElement = document.getElementById('city');
     let selectedCity = hashData.city || localStorage.getItem('city') || 'Melbourne';
     cityElement.value = selectedCity;
     cityElement.addEventListener('change', (event) => {
       selectedCity = event.target.value;
+      excluded.clear();
       setPlaces(true);
       localStorage.setItem('city', selectedCity);
     });
@@ -1734,6 +1796,7 @@
     mealTypeElement.value = selectedMealType;
     mealTypeElement.addEventListener('change', (event) => {
       selectedMealType = event.target.value;
+      excluded.clear();
       setPlaces();
       localStorage.setItem('mealType', selectedMealType);
     });
@@ -1742,6 +1805,7 @@
     const mealTypeCategoryElement = document.getElementById('mealTypeCategory');
     categoryElement.value = hashData.category || localStorage.getItem('category') || 'area';
     categoryElement.addEventListener('change', (event) => {
+      excluded.clear();
       setPlaces();
       localStorage.setItem('category', event.target.value);
     });
@@ -1749,6 +1813,7 @@
     const statusElement = document.getElementById('status');
     statusElement.value = hashData.status || localStorage.getItem('status') || 'tried';
     statusElement.addEventListener('change', (event) => {
+      excluded.clear();
       setCities();
       setPlaces(true);
       localStorage.setItem('status', event.target.value);
@@ -1789,9 +1854,13 @@
         localStorage.setItem('city', selectedCity);
       }
 
+      const excludedArray = [...excluded];
+      localStorage.setItem('excluded', JSON.stringify(excludedArray));
+
       location.hash = encodeURIComponent(JSON.stringify({
         category: categoryElement.value,
         city: selectedCity,
+        ...excludedArray.length > 0 && { excluded: excludedArray },
         mealType: selectedMealType,
         status: statusElement.value
       }));
@@ -1901,14 +1970,49 @@
         return 0;
       });
       const placesByHeading = {};
+      filters.clear();
       sortedPlaces.forEach((place) => {
         const headingValue = place[headingKey] || selectedCity;
+        filters.add(headingValue);
+
+        if (excluded.has(headingValue)) {
+          return;
+        }
         if (!placesByHeading[headingValue]) {
           placesByHeading[headingValue] = [];
         }
 
         placesByHeading[headingValue].push(place);
       });
+
+      filtersContainerElement.innerHTML = '';
+
+      if (headingKey === 'area' || headingKey === 'type') {
+        filters.forEach((filter) => {
+          const labelElement = document.createElement('label');
+          const inputElement = document.createElement('input');
+          inputElement.type = 'checkbox';
+          inputElement.checked = !excluded.has(filter);
+          inputElement.addEventListener('change', (event) => {
+            if (event.target.checked) {
+              excluded.delete(filter);
+            } else {
+              excluded.add(filter);
+            }
+
+            // this is beyond inefficient but I refuse to port this whole thing over to React so yolo
+            setPlaces();
+          });
+
+          const spanElement = document.createElement('span');
+          spanElement.innerText = filter;
+
+          labelElement.appendChild(inputElement);
+          labelElement.appendChild(spanElement);
+
+          filtersContainerElement.appendChild(labelElement);
+        });
+      }
 
       for (const [heading, places] of Object.entries(placesByHeading)) {
         const headingElement = document.createElement('span');

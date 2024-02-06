@@ -2001,7 +2001,7 @@
 
       filtersContainerElement.innerHTML = '';
 
-      if (headingKey === 'area' || headingKey === 'type') {
+      if (filters.size > 1 && (headingKey === 'area' || headingKey === 'type')) {
         filters.forEach((filter) => {
           const labelElement = document.createElement('label');
           const inputElement = document.createElement('input');

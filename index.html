@@ -965,14 +965,6 @@
             url: 'https://maps.app.goo.gl/Pf6NTAikn7c1TqrF6'
           },
           {
-            area: 'Bentleigh',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Markos Greek Kitchen Bar',
-            notes: 'Have tried Alati just down the road, and took issue with the price, portion size, lack of mixed gyros option, and mutual exclusivity between chips and pita. This place appears to solves all of that',
-            type: 'Greek',
-            url: 'https://maps.app.goo.gl/5Bm32F29wKHhzdiQ7'
-          },
-          {
             area: 'Brunswick',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Juanita Peaches',
@@ -1061,14 +1053,6 @@
             url: 'https://sisenor.com.au/'
           },
           {
-            area: 'Hawthorn',
-            mealType: 'Lunch',
-            name: 'Eat Sacred',
-            notes: 'Sandwiches and bagels look so good',
-            type: 'Sandwiches',
-            url: 'https://maps.app.goo.gl/J7vXgfprqtQGVLBD9'
-          },
-          {
             area: 'CBD',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Butcher's Prime Restaurant",
@@ -1112,7 +1096,7 @@
             area: 'Hawthorn',
             mealType: ['Breakfast', 'Lunch'],
             name: 'Eat Sacred',
-            notes: 'Sandwiches look solid as',
+            notes: 'Sandwiches and bagels look solid as',
             type: 'Cafe',
             url: 'https://maps.app.goo.gl/NquaUFpSEPhkXnpy9'
           },
@@ -1771,6 +1755,12 @@
         const failsTest2 = flattenedRawPlaces.filter(({ mealType }) => (Array.isArray(mealType) ? mealType : [mealType]).some((type) => !validMealTypes.includes(type))).map(({ name }) => name);;
         if (failsTest2.length > 0) {
           throw new Error(`invalid meal types (see ${failsTest2.join(', ')})`);
+        }
+
+        const allNames = flattenedRawPlaces.map(({ name }) => name);
+        const duplicateNames = allNames.filter((name, index) => allNames.indexOf(name) !== index);
+        if (duplicateNames.length > 0) {
+          throw new Error(`duplicate place names (see ${duplicateNames.join(', ')})`);
         }
       }
     }

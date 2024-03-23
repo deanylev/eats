@@ -1996,7 +1996,7 @@
       location.hash = encodeURIComponent(JSON.stringify({
         category: categoryElement.value,
         city: selectedCity,
-        ...excludedArray.length > 0 && { excluded: excludedArray },
+        excluded: excludedArray,
         mealType: selectedMealType,
         status: statusElement.value
       }));
@@ -2087,19 +2087,19 @@
           }
         }
 
-        if (a[headingKey] > b[headingKey]) {
+        if (a[headingKey].toLowerCase() > b[headingKey].toLowerCase()) {
           return 1;
         }
 
-        if (b[headingKey] > a[headingKey]) {
+        if (b[headingKey].toLowerCase() > a[headingKey].toLowerCase()) {
           return -1;
         }
 
-        if (a.name > b.name) {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
           return 1;
         }
 
-        if (b.name > a.name) {
+        if (b.name.toLowerCase() > a.name.toLowerCase()) {
           return -1;
         }
 
@@ -2183,7 +2183,9 @@
           placeElement.appendChild(emojiElement);
           if (headingKey !== 'type' || place.area) {
             const areaOrTypeElement = document.createElement('span');
-            const maybeArrayToString = (maybeArray) => (Array.isArray(maybeArray) ? cloneAndSort(maybeArray).join(', ') : maybeArray);
+            const maybeArrayToString = (maybeArray) => (Array.isArray(maybeArray) ? cloneAndSort(maybeArray, (a, b) => {
+              return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
+            }).join(', ') : maybeArray);
             const areaString = maybeArrayToString(place.area);
             areaOrTypeElement.innerText = headingKey === 'type' ? areaString : place.type;
             if (headingKey === 'mealType') {

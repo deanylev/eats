@@ -1184,14 +1184,6 @@
             url: 'https://maps.app.goo.gl/7jjiFymgUZK8WZCA6'
           },
           {
-            area: ['Brunswick', 'Fitzroy', 'Hawthorn', 'Richmond'],
-            mealType: ['Breakfast', 'Lunch'],
-            name: 'Mile End Bagels',
-            notes: 'These look so good on the website',
-            type: 'Bagels',
-            url: 'https://mile-end.com.au'
-          },
-          {
             area: ['Cremorne', 'Port Melbourne', 'Yarraville'],
             mealType: ['Breakfast', 'Lunch'],
             name: 'Coe & Coe',
@@ -1286,6 +1278,38 @@
             notes: '[ONLY OPEN ON SAT/SUN] these meatball subs look solid as',
             type: 'Sandwiches',
             url: 'https://maps.app.goo.gl/hp28kAnJ82EZv3SN7'
+          },
+          {
+            area: 'Mentone',
+            mealType: 'Sopper Time',
+            name: 'Sunnyside Sliced',
+            notes: 'Looks like great New York style pizza',
+            type: 'Pizza',
+            url: 'https://maps.app.goo.gl/8yPGdw9FntbTqvN1A'
+          },
+          {
+            area: 'Richmond',
+            mealType: 'Sopper Time',
+            name: 'Love Letter',
+            notes: 'Friday steak night looks to go hard',
+            type: 'Steak',
+            url: 'https://maps.app.goo.gl/FcZ6f6xA9bwordP86'
+          },
+          {
+            area: 'South Melbourne',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Smithburg.',
+            notes: 'Smash berders look great',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/EcV8A7cgA6tdoQ4z9'
+          },
+          {
+            area: 'Fitzroy North',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Danny's Burgers",
+            notes: 'Looks like tasty, traditional berders',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/yqUcLpN9FqUVUeVd9'
           }
         ],
         Sydney: [
@@ -1508,6 +1532,13 @@
             notes: 'Smash berders look so good',
             type: 'Berders',
             url: 'https://maps.app.goo.gl/oWp1XmAy3oMx5FFR8'
+          },
+          {
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Gordon Ramsay Hell's Kitchen",
+            notes: 'No explanation needed',
+            type: 'American',
+            url: 'https://maps.app.goo.gl/p6cWwJTwD6nKsABC8'
           }
         ],
         'Los Angeles': [
@@ -2174,11 +2205,11 @@
           }
         }
 
-        if (a[headingKey].toLowerCase() > b[headingKey].toLowerCase()) {
+        if (a[headingKey]?.toLowerCase() > b[headingKey]?.toLowerCase()) {
           return 1;
         }
 
-        if (b[headingKey].toLowerCase() > a[headingKey].toLowerCase()) {
+        if (b[headingKey]?.toLowerCase() > a[headingKey]?.toLowerCase()) {
           return -1;
         }
 

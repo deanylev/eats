@@ -148,7 +148,6 @@
         <select id="status">
           <option value="tried">Tried</option>
           <option value="wanted">Want to Try</option>
-          <option value="noGood">👎</option>
         </select>
       </div>
       <div id="filtersContainer"></div>
@@ -2000,51 +1999,6 @@
         ]
       }
     };
-    const noGoodPlaces = {
-      Australia: {
-        Melbourne: [
-          {
-            area: 'Brunswick',
-            mealType: 'Snacc',
-            name: "Luther's Scoops",
-            notes: 'The dark chocolate ice cream was really quite good, but the malted vanilla was gross, and the trek and crazy long wait just make it not worth it over something like Messina',
-            type: 'Ice Cream'
-          },
-          {
-            area: 'Carlton',
-            mealType: 'Lunch',
-            name: 'Shooter McGavins',
-            notes: 'The fried chicken sandwich had great breading, but it had absolutely no flavour and was quite greasy',
-            type: 'Sandwiches'
-          },
-          {
-            area: 'Caulfield South',
-            mealType: 'Snacc',
-            name: "Sebby's Scrolls",
-            notes: 'Solid coffee but very average cinnamon scrolls unfortunately',
-            type: 'Bakery'
-          }
-        ]
-      },
-      USA: {
-        'Los Angeles': [
-          {
-            area: 'Everywhere',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Chick-fil-A',
-            notes: "Really overhyped, the chicken was flavourless and soggy, Popeyes dunks on it. I had it when I was 15 and remember enjoying it so I'm definitely willing to give it another try",
-            type: 'Fried Chicken'
-          },
-          {
-            area: 'Everywhere',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Chipotle',
-            notes: 'Really not sure what the obsession with this is, it tastes a lot like Zambrero, which is fine, but authentic amazing Mexican food is everywhere in California and way cheaper',
-            type: 'Mexican'
-          }
-        ]
-      }
-    };
 
     const tryParseJson = (string, def) => {
       try {
@@ -2059,10 +2013,6 @@
     const getRawPlaces = (status = statusElement.value) => {
       if (status === 'wanted') {
         return wantedPlaces;
-      }
-
-      if (status === 'noGood') {
-        return noGoodPlaces;
       }
 
       return triedPlaces;

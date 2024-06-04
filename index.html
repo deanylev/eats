@@ -2060,6 +2060,16 @@
             type: 'Fried Chicken',
             url: 'https://www.charlespanfriedchicken.com'
           }
+        ],
+        'San Francisco': [
+          {
+            area: 'Mission District',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "WesBurger n' More",
+            notes: '<a href="https://x.com/sdw/status/1797876775172907239" target="_blank">https://x.com/sdw/status/1797876775172907239</a>',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/bpx1bfAuPAteHYf29'
+          }
         ]
       }
     };
@@ -2394,7 +2404,7 @@
           emojiElement.appendChild(subHeadingElement);
 
           const notesElement = document.createElement('div');
-          notesElement.innerText = place.notes;
+          notesElement.innerHTML = place.notes;
 
           placeElement.appendChild(emojiElement);
           if (headingKey !== 'type' || place.area) {

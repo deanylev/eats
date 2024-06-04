@@ -2175,9 +2175,10 @@
     const statusElement = document.getElementById('status');
     statusElement.value = hashData.status || localStorage.getItem('status') || 'tried';
     statusElement.addEventListener('change', (event) => {
+      const wasExcluded = [...excluded];
       excluded.clear();
       setCities();
-      setPlaces(true);
+      const newFilters = setPlaces(true, wasExcluded);
       localStorage.setItem('status', event.target.value);
     });
 
@@ -2207,7 +2208,7 @@
     setCities();
 
     const placesContainerElement = document.getElementById('placesContainer');
-    const setPlaces = (updateMealTypes) => {
+    const setPlaces = (updateMealTypes, oldExcluded = []) => {
       const rawPlaces = getRawPlaces();
       const allCities = Object.values(rawPlaces).flatMap((places) => Object.keys(places));
       if (!allCities.includes(selectedCity)) {
@@ -2215,21 +2216,6 @@
         cityElement.value = selectedCity;
         localStorage.setItem('city', selectedCity);
       }
-
-      const excludedArray = [...excluded];
-      localStorage.setItem('excluded', JSON.stringify(excludedArray));
-
-      location.hash = encodeURIComponent(JSON.stringify({
-        category: categoryElement.value,
-        city: selectedCity,
-        excluded: excludedArray,
-        mealType: selectedMealType,
-        status: statusElement.value
-      }));
-
-      const headingKey = categoryElement.value;
-
-      placesContainerElement.innerHTML = '';
 
       let selectedPlaces = [
         ...Object.values(rawPlaces)
@@ -2241,6 +2227,8 @@
         selectedMealType = 'Any';
         updateMealTypes = true;
       }
+
+      const headingKey = categoryElement.value;
 
       mealTypeCategoryElement.disabled = selectedMealType !== 'Any';
       mealTypeElement.disabled = headingKey === 'mealType';
@@ -2331,11 +2319,18 @@
 
         return 0;
       });
+
+      const previouslyIncluded = oldExcluded.length === 0 ? null : [...filters].filter((filter) => !oldExcluded.includes(filter));
+
       const placesByHeading = {};
       filters.clear();
       sortedPlaces.forEach((place) => {
         const headingValue = place[headingKey] || selectedCity;
         filters.add(headingValue);
+
+        if (previouslyIncluded && !previouslyIncluded.includes(headingValue)) {
+          excluded.add(headingValue);
+        }
 
         if (excluded.has(headingValue)) {
           return;
@@ -2346,6 +2341,19 @@
 
         placesByHeading[headingValue].push(place);
       });
+
+      const excludedArray = [...excluded];
+      localStorage.setItem('excluded', JSON.stringify(excludedArray));
+
+      location.hash = encodeURIComponent(JSON.stringify({
+        category: categoryElement.value,
+        city: selectedCity,
+        excluded: excludedArray,
+        mealType: selectedMealType,
+        status: statusElement.value
+      }));
+
+      placesContainerElement.innerHTML = '';
 
       filtersContainerElement.innerHTML = '';
 

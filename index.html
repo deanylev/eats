@@ -2157,9 +2157,10 @@
     let selectedMealType = hashData.mealType || localStorage.getItem('mealType') || 'Any';
     mealTypeElement.value = selectedMealType;
     mealTypeElement.addEventListener('change', (event) => {
+      const wasExcluded = [...excluded];
       selectedMealType = event.target.value;
       excluded.clear();
-      setPlaces();
+      setPlaces(false, wasExcluded);
       localStorage.setItem('mealType', selectedMealType);
     });
 
@@ -2178,7 +2179,7 @@
       const wasExcluded = [...excluded];
       excluded.clear();
       setCities();
-      const newFilters = setPlaces(true, wasExcluded);
+      setPlaces(true, wasExcluded);
       localStorage.setItem('status', event.target.value);
     });
 
@@ -2208,7 +2209,7 @@
     setCities();
 
     const placesContainerElement = document.getElementById('placesContainer');
-    const setPlaces = (updateMealTypes, oldExcluded = []) => {
+    const setPlaces = (updateMealTypes = false, oldExcluded = []) => {
       const rawPlaces = getRawPlaces();
       const allCities = Object.values(rawPlaces).flatMap((places) => Object.keys(places));
       if (!allCities.includes(selectedCity)) {
@@ -2320,15 +2321,20 @@
         return 0;
       });
 
-      const previouslyIncluded = oldExcluded.length === 0 ? null : [...filters].filter((filter) => !oldExcluded.includes(filter));
+      const oldFilters = [...filters];
+      filters.clear();
 
       const placesByHeading = {};
-      filters.clear();
       sortedPlaces.forEach((place) => {
         const headingValue = place[headingKey] || selectedCity;
         filters.add(headingValue);
+      });
 
-        if (previouslyIncluded && !previouslyIncluded.includes(headingValue)) {
+      const previouslyIncluded = oldExcluded.length === 0 ? null : oldFilters.filter((filter) => !oldExcluded.includes(filter)).filter((filter) => filters.has(filter));
+
+      sortedPlaces.forEach((place) => {
+        const headingValue = place[headingKey] || selectedCity;
+        if (previouslyIncluded && previouslyIncluded.length > 0 && !previouslyIncluded.includes(headingValue) && filters.size > 1) {
           excluded.add(headingValue);
         }
 

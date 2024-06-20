@@ -342,7 +342,7 @@
             area: 'South Yarra',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Gilson',
-            notes: "Melbourne's version of Bar Totti's, i.e. you rip off pieces of delicious bread and dip it in toppings of your choice. Great pasta too",
+            notes: "Melbourne's version of Bar Totti's, i.e. you rip off pieces of woodfired bread and dip it in toppings of your choice. I actually think Totti's bread is way better, and Gilson's pizza/pasta are the star of the show",
             type: 'Italian',
             url: 'https://maps.app.goo.gl/jHDwJwrtGocZuPqA8'
           },
@@ -601,6 +601,22 @@
             notes: 'Not quite Levain level but really not far off',
             type: 'Cookies',
             url: 'https://thecookiebox.com.au'
+          },
+          {
+            area: 'Brighton',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'The Royale Brothers',
+            notes: 'More of a traditional style berder, thick patties and heaps of sauce, very tasty. Solid chips as well',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/ETZEHd15VSiheTRWA'
+          },
+          {
+            area: ['CBD', 'South Yarra'],
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'A25 Pizzeria',
+            notes: 'Solid as woodfire pizza',
+            type: 'Italian',
+            url: 'https://a25.com.au'
           }
         ],
         'Philip Island': [
@@ -1454,6 +1470,14 @@
             notes: "Apparently great BBQ that isn't overpriced",
             type: 'BBQ',
             url: 'https://maps.app.goo.gl/xy5o82Df92EX2Asb8'
+          },
+          {
+            area: 'Caulfield North',
+            mealType: 'Lunch',
+            name: 'Hawthorn Road Bakery',
+            notes: 'Sass said the chicken schnitzel wrap here is $10 and super good',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/qf6MWanz8P5pgnaG7'
           }
         ],
         Sydney: [
@@ -2172,7 +2196,7 @@
       for (const status of ['wanted', 'tried']) {
         const rawPlaces = getRawPlaces(status);
         const flattenedRawPlaces = flattenRawPlaces(rawPlaces);
-        const failsTest1 = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere') && url.includes('maps')).map(({ name }) => name);
+        const failsTest1 = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere') && url.includes('maps.app.goo.gl')).map(({ name }) => name);
         if (failsTest1.length > 0) {
           throw new Error(`places with multiple locations must link to website (see ${failsTest1.join(', ')})`);
         }

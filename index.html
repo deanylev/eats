@@ -120,6 +120,11 @@
     #placesContainer > div > div > .areaOrType {
       font-style: italic;
     }
+
+    #placesContainer > div > div > div > a {
+      color: #fff;
+      overflow-wrap: break-word;
+    }
   </style>
 </head>
 <body>
@@ -631,7 +636,9 @@
             area: ['Malvern East', 'Moorabbin'],
             mealType: ['Breakfast', 'Lunch'],
             name: 'TOAST IT!',
-            notes: 'Nothing mind blowing but I enjoy the three cheese toastie every couple of weeks, and the coffee is great too'
+            notes: 'Nothing mind blowing but I enjoy the three cheese toastie every couple of weeks, and the coffee is great too',
+            type: 'Sandwiches',
+            url: 'https://www.toastit.com.au/'
           }
         ],
         'Philip Island': [
@@ -1468,7 +1475,8 @@
             mealType: 'Sopper Time',
             name: 'Maven by Morgan',
             notes: 'Bread, steak and tiramisu all look so good',
-            type: 'Mediterranean'
+            type: 'Mediterranean',
+            url: 'https://maps.app.goo.gl/tCUmRHQZxy9zxE2J6'
           },
           {
             area: 'Toorak',
@@ -1501,6 +1509,14 @@
             notes: 'I used to get these all the time when they were in South Yarra and then they shut down due to COVID. Keen to see if they are good as I remember',
             type: 'Berders',
             url: 'https://maps.app.goo.gl/SpDP4RZNPAw6cLW87'
+          },
+          {
+            area: 'Carlton',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Taquito',
+            notes: '<a href="https://reddit.com/r/melbourne/comments/1dx2dq3/_/lbzd93a" target="_blank">https://reddit.com/r/melbourne/comments/1dx2dq3/_/lbzd93a</a>',
+            type: 'Mexican',
+            url: 'https://maps.app.goo.gl/Yh92ACeA4P7ETZRBA'
           }
         ],
         Sydney: [
@@ -1575,6 +1591,22 @@
             notes: 'Looks like a pretty solid cafe as far as Sydney goes',
             type: 'Cafe',
             url: 'https://maps.app.goo.gl/psX4rMKdzM54AKVu9'
+          },
+          {
+            area: 'Marrickville',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Chebbo's Burgers",
+            notes: 'Smash berders look unreal',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/Tz5vFjV6QJM1iGzt7'
+          },
+          {
+            area: 'Newtown',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'YummyBox',
+            notes: 'Deep dish pizza!',
+            type: 'Pizza',
+            url: 'https://maps.app.goo.gl/HhUBRYG4TBSw9G6s7'
           }
         ],
       },
@@ -1671,6 +1703,18 @@
             notes: 'Takeaway tiramisu!',
             type: 'Tiramisu',
             url: 'https://maps.app.goo.gl/hE1BD3wwuRm8Nm5f7'
+          }
+        ]
+      },
+      Japan: {
+        Tokyo: [
+          {
+            area: 'Shibuya',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Mom's Touch",
+            notes: 'South Korean fast food chain, fried chicken sandwiches looks unreal',
+            type: 'Fried Chicken',
+            url: 'https://maps.app.goo.gl/7w1dCHuEA59KPYva8'
           }
         ]
       },

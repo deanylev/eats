@@ -176,6 +176,7 @@
       Berders: '🍔',
       Cafe: '☕️',
       'Cake Shop': '🍰',
+      Chilean: '🇨🇱',
       Cookies: '🍪',
       Deli: '🍖',
       Diner: '🥞',
@@ -1583,6 +1584,46 @@
             notes: 'Sandwiches look amazing, would love to try the philly cheesesteak. 5 stars on Google out of almost 400 reviews!',
             type: 'Sandwiches',
             url: 'https://maps.app.goo.gl/1FKkJzjMS82o3uNN9'
+          },
+          {
+            area: ['Essendon', 'Williamstown', 'Yarraville'],
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Pizza d'Asporto",
+            notes: 'Pizza looks amazing',
+            type: 'Pizza',
+            url: 'https://pizzadasporto.com.au'
+          },
+          {
+            area: 'Bayswater',
+            mealType: 'Snacc',
+            name: 'Dröm Bakery',
+            notes: 'Pastries look absurd',
+            type: 'Bakery',
+            url: 'https://maps.app.goo.gl/SwUkKMhy1JNzjodR6'
+          },
+          {
+            area: 'Essendon',
+            mealType: 'Lunch',
+            name: '3 Salamis',
+            notes: 'Great looking Italian sandwiches',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/arQmr7mtLKr47va76'
+          },
+          {
+            area: 'Fitzroy',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Deep End Pizza',
+            notes: 'Detroit, Chicago and NY style pizza in one store!',
+            type: 'Pizza',
+            url: 'https://maps.app.goo.gl/vUWu8CnnXN8BhjS76'
+          },
+          {
+            area: 'Windsor',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Two Chiles',
+            notes: 'Never tried South American food and this looks great',
+            type: 'Chilean',
+            url: 'https://maps.app.goo.gl/eA12jkmdbfBz8sTx8'
           }
         ],
         Sydney: [
@@ -2101,6 +2142,14 @@
             notes: 'French sandwiches to die for',
             type: 'Sandwiches',
             url: 'https://maps.app.goo.gl/MBZzMYZzCtNHVykt6'
+          },
+          {
+            area: 'Bunker Hill',
+            mealType: 'Lunch',
+            name: "Danny Boy's Famous Original Pizza",
+            notes: 'Supposed to be some of the best pizza in LA, New York style',
+            type: 'Pizza',
+            url: 'https://maps.app.goo.gl/q5Z2eHFFa3BiQ5sNA'
           }
         ],
         // https://en.wikipedia.org/wiki/List_of_Manhattan_neighborhoods
@@ -2360,6 +2409,22 @@
             notes: 'Meant to be some of the best Thai food in the US, reviews are seriously amazing',
             type: 'Thai',
             url: 'https://maps.app.goo.gl/ZUQ61syGYB15Wjjc7'
+          },
+          {
+            area: 'Queens',
+            mealType: 'Lunch',
+            name: "Sal, Kris & Charlie's Deli",
+            notes: 'Scooby Doo ah sandwiches',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/vSTmsHe9vcTTiC4x8'
+          },
+          {
+            area: 'Unknown',
+            mealType: 'Sopper Time',
+            name: "Chrissy's Pizza",
+            notes: 'Very exclusive place, pizza looks great. Currently moving location at the time of writing',
+            type: 'Pizza',
+            url: 'https://www.instagram.com/chrissys.pizza'
           }
         ],
         'San Francisco': [
@@ -2400,7 +2465,7 @@
       for (const status of ['wanted', 'tried']) {
         const rawPlaces = getRawPlaces(status);
         const flattenedRawPlaces = flattenRawPlaces(rawPlaces);
-        const failsTest1 = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere') && url.includes('maps.app.goo.gl')).map(({ name }) => name);
+        const failsTest1 = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere' || area === 'Unknown') && url.includes('maps.app.goo.gl')).map(({ name }) => name);
         if (failsTest1.length > 0) {
           throw new Error(`places with multiple locations must link to website (see ${failsTest1.join(', ')})`);
         }

@@ -38,15 +38,22 @@
       padding-top: 15px;
     }
 
+    .emojis {
+      padding-right: 5px;
+    }
+
     .subHeading {
       color: #e8a61a;
       font-size: 20px;
       font-weight: 700;
-      padding-left: 5px;
     }
 
     a.subHeading {
       text-decoration: underline;
+    }
+
+    .referrer {
+      color: #e8a61a;
     }
 
     .body {
@@ -188,6 +195,7 @@
       'Fried Chicken': '🍗',
       German: '🇩🇪',
       Greek: '🇬🇷',
+      'Hot Dogs': '🌭',
       Hungarian: '🇭🇺',
       'Ice Cream': '🍦',
       Indian: '🇮🇳',
@@ -208,6 +216,27 @@
       Tiramisu: '🍮',
       'Wine Bar': '🍷'
     };
+    const globalPlaces = Object.fromEntries(Object.entries({
+      hawksmoor: {
+        mealType: ['Lunch', 'Sopper Time'],
+        name: 'Hawksmoor',
+        notes: 'Berder here looks like a Big Mac on steroids, in a great way',
+        referrerUrl: 'https://vt.tiktok.com/ZS2WcAJjC/',
+        type: ['Berders', 'Steak']
+      },
+      cipriani: {
+        mealType: ['Lunch', 'Sopper Time'],
+        name: 'Cipriani',
+        notes: 'Only really interested in the dessert',
+        referrerUrl: 'https://vt.tiktok.com/ZS2WTCh2x',
+        type: 'Italian'
+      }
+    }).map(([key, value]) => [key, {
+      ...value,
+      isGlobal: true
+    }]));
+
+
     const triedPlaces = {
       Australia: {
         Melbourne: [
@@ -324,7 +353,7 @@
             url: 'https://www.marblsteakhouse.com.au'
           },
           {
-            area: ['Richmond', 'South Melbourne', 'Fitzroy'],
+            area: ['CBD', 'Richmond', 'South Melbourne', 'Fitzroy'],
             mealType: 'Lunch',
             name: "Hector's Deli",
             notes: 'Beef and pickles toastie is geniuinely to die for, and some of the best glazed donuts I have ever had. Great coffee too',
@@ -549,7 +578,7 @@
           },
           {
             area: ['CBD', 'Port Melbourne'],
-            mealType: ['Sopper Time'],
+            mealType: 'Sopper Time',
             name: 'Aagaman Indian Nepalese Restaurant',
             notes: 'Seriously delicious butter chicken',
             type: 'Indian',
@@ -834,7 +863,7 @@
             url: 'https://maps.app.goo.gl/Dpjkp5aaza5phcDk6'
           },
           {
-            mealType: ['Lunch'],
+            mealType: 'Lunch',
             name: 'Mortadeli',
             notes: "The coffee is a bit average, the merch sucks (sorry guys) but the sandwiches are bangin'",
             type: 'Sandwiches',
@@ -1154,14 +1183,6 @@
             url: 'https://maps.app.goo.gl/J1QcFP68ZRLhTWpVA'
           },
           {
-            area: 'Richmond',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Pizzeria Da Bruno',
-            notes: 'Looks like tasty, fancy Italian',
-            type: 'Italian',
-            url: 'https://maps.app.goo.gl/7TCS2UkDNF2M3C1G9'
-          },
-          {
             area: 'South Yarra',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Caffe e Cucina',
@@ -1291,7 +1312,7 @@
           },
           {
             area: 'Carlton',
-            mealType: ['Lunch'],
+            mealType: 'Lunch',
             name: 'Super Norma',
             notes: 'Takeaway pasta in noodle boxes, what a great concept (although the place is just a popup ☹️)',
             type: 'Italian',
@@ -1550,6 +1571,7 @@
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Taquito',
             notes: '<a href="https://reddit.com/r/melbourne/comments/1dx2dq3/_/lbzd93a" target="_blank">https://reddit.com/r/melbourne/comments/1dx2dq3/_/lbzd93a</a>',
+            referrerUrl: 'https://reddit.com/r/melbourne/comments/1dx2dq3/_/lbzd93a',
             type: 'Mexican',
             url: 'https://maps.app.goo.gl/Yh92ACeA4P7ETZRBA'
           },
@@ -1672,6 +1694,51 @@
             notes: 'Self explanatory',
             type: 'Fried Chicken',
             url: 'https://hotstarmelb.com.au/'
+          },
+          {
+            area: 'Yarraville',
+            mealType: 'Lunch',
+            name: "Jimmy's Deli",
+            notes: 'The 1/2 kilo pastrami sandwich looks ridiculous',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WcMBHE',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/zxKgypoZieVmnrqH8'
+          },
+          {
+            area: 'Moorabbin',
+            mealType: 'Lunch',
+            name: 'Toasted Truck and Deli',
+            notes: 'Birria toasties!',
+            referrerUrl: 'https://vt.tiktok.com/ZS2W3UNxB/',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/h7BgxC4ttMQKKT416'
+          },
+          {
+            area: 'Malvern East',
+            mealType: 'Lunch',
+            name: 'Loafers Bakery & Deli',
+            notes: '$7 chicken schnitzel rolls',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WTWhRP/',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/3QuvjuMwgEayW88u9'
+          },
+          {
+            area: 'South Melbourne',
+            mealType: 'Sopper Time',
+            name: 'Streetdogz',
+            notes: "Loaded hot dogs! Wish they were open for lunch (2pm on Saturday and Sunday at least, but that's pretty late for lunch)",
+            referrerUrl: 'https://vt.tiktok.com/ZS2WTEG1f',
+            type: 'Hot Dogs',
+            url: 'https://maps.app.goo.gl/D16aFqaLchu38oTt9'
+          },
+          {
+            area: 'Abbotsford',
+            mealType: ['Breakfast', 'Lunch'],
+            name: "Raph's Deli",
+            notes: 'Sandwiches look great, apparently the gluten free options are very good',
+            referrerUrl: 'https://www.reddit.com/r/melbourne/comments/1faadfl/comment/llsdc7d',
+            type: ['Cafe', 'Sandwiches'],
+            url: 'https://maps.app.goo.gl/sxoCW2B6imgKCfCG9'
           }
         ],
         Sydney: [
@@ -1770,8 +1837,30 @@
             notes: 'Sandwiches look absurd',
             type: 'Sandwiches',
             url: 'https://maps.app.goo.gl/RtXB6ydNYgWTRNdz9'
+          },
+          {
+            area: 'CBD',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'The Gidley',
+            notes: 'Apparently the best berder in Australia',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WvCVR6',
+            type: ['Berders', 'Steak'],
+            url: 'https://maps.app.goo.gl/Mbj39jMSCDM2cVBy8'
           }
         ],
+      },
+      Canada: {
+        Vancouver: [
+          {
+            area: 'Kitsilano',
+            mealType: ['Breakfast', 'Lunch'],
+            name: "Siegel's Bagels",
+            notes: 'Bagels look great',
+            referrerUrl: 'https://vt.tiktok.com/ZS2W3tTKR',
+            type: 'Bagels',
+            url: 'https://maps.app.goo.gl/x3AYSUtTmPWuC7Mk6'
+          }
+        ]
       },
       France: {
         Paris: [
@@ -1790,6 +1879,15 @@
             notes: 'Smash berders look unbelievable',
             type: 'Berders',
             url: 'https://www.dumboparis.com'
+          },
+          {
+            area: 'Central Paris',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Chez Janou',
+            notes: 'Only really care about the mousse tbh',
+            referrerUrl: 'https://vt.tiktok.com/ZS2W3kEWa',
+            type: 'French',
+            url: 'https://maps.app.goo.gl/SNP5Ys2pTZHHXqxJ6'
           }
         ]
       },
@@ -2012,9 +2110,38 @@
             area: 'Everywhere',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Morley's",
-            notes: 'This looks pretty shit but: https://vt.tiktok.com/ZS21P6YpF',
+            notes: 'This looks pretty shit but check where I found it',
+            referrerUrl: 'https://vt.tiktok.com/ZS21P6YpF',
             type: 'Fried Chicken',
             url: 'https://www.morleyschicken.com'
+          },
+          {
+            ...globalPlaces.hawksmoor,
+            area: ['Central London', 'City of London', 'East London', 'South London', 'West London'],
+            url: 'https://thehawksmoor.com'
+          },
+          {
+            ...globalPlaces.cipriani,
+            area: 'Central London',
+            url: 'https://maps.app.goo.gl/UG9qA2JdFMPH4XgCA'
+          },
+          {
+            area: 'Central London',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Alley Cats Pizza',
+            notes: 'Proper New York style, ranch included',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WwMLQv',
+            type: 'Pizza',
+            url: 'https://www.alleycatspizza.co.uk'
+          },
+          {
+            area: 'West London',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Crisp Pizza',
+            notes: "Google stars are bad but the TikTok said it's amazing so ¯\\_(ツ)_/¯",
+            referrerUrl: 'https://vt.tiktok.com/ZS2WwHJJj/',
+            type: 'Pizza',
+            url: 'https://maps.app.goo.gl/1CDCe84BfvDNusXJ9'
           }
         ]
       },
@@ -2053,6 +2180,17 @@
             notes: 'Supposedly the best deep dish pizza around',
             type: 'Pizza',
             url: 'https://maps.app.goo.gl/PWdFbDdrhJQTaFZU8'
+          }
+        ],
+        Houston: [
+          {
+            area: 'Westwood',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Aga's Restaurant & Catering",
+            notes: 'The top rated Indian spot in the whole country, 4.8 from 16.5k reviews',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WvgMKT/',
+            type: 'Indian',
+            url: 'https://maps.app.goo.gl/NbMK6Lzu6RFmo3fi8'
           }
         ],
         'Las Vegas': [
@@ -2198,6 +2336,15 @@
             notes: 'Supposed to be some of the best pizza in LA, New York style',
             type: 'Pizza',
             url: 'https://maps.app.goo.gl/q5Z2eHFFa3BiQ5sNA'
+          },
+          {
+            area: ['Anaheim', 'Fullerton', 'Huntington Beach', 'Huntington Park'],
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Tacos Los Cholos',
+            notes: 'Meant to be some of the best tacos around',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WT66LG',
+            type: 'Mexican',
+            url: 'https://www.tacosloscholos.net'
           }
         ],
         // https://en.wikipedia.org/wiki/List_of_Manhattan_neighborhoods
@@ -2351,7 +2498,7 @@
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Emily',
             notes: 'This is actually a pizza place but apparently the berder is one of the best in New York',
-            type: 'Berders',
+            type: ['Berders', 'Pizza'],
             url: 'https://www.pizzalovesemily.com'
           },
           {
@@ -2473,6 +2620,11 @@
             notes: 'Very exclusive place, pizza looks great. Currently moving location at the time of writing',
             type: 'Pizza',
             url: 'https://www.instagram.com/chrissys.pizza'
+          },
+          {
+            ...globalPlaces.hawksmoor,
+            area: 'East Side',
+            url: 'https://maps.app.goo.gl/kf8LpgkYtc2GMskn8'
           }
         ],
         'San Francisco': [
@@ -2481,6 +2633,7 @@
             mealType: ['Lunch', 'Sopper Time'],
             name: "WesBurger n' More",
             notes: '<a href="https://x.com/sdw/status/1797876775172907239" target="_blank">https://x.com/sdw/status/1797876775172907239</a>',
+            referrerUrl: 'https://x.com/sdw/status/1797876775172907239',
             type: 'Berders',
             url: 'https://maps.app.goo.gl/bpx1bfAuPAteHYf29'
           }
@@ -2518,21 +2671,68 @@
           throw new Error(`places with multiple locations must link to website (see ${failsTest1.join(', ')})`);
         }
 
+        const allNames = flattenedRawPlaces.map(({ name }) => name);
+        const duplicateNames = flattenedRawPlaces
+          .filter(({ id, isGlobal, name }, index) => !isGlobal && allNames.indexOf(name) !== index)
+          .map(({ name }) => name);
+        if (duplicateNames.length > 0) {
+          throw new Error(`duplicate place names (see ${duplicateNames.join(', ')})`);
+        }
+
+        const validKeys = ['area', 'isGlobal', 'mealType', 'name', 'notes', 'referrerUrl', 'type', 'url'];
         const validMealTypes = [
           'Snacc',
           'Breakfast',
           'Lunch',
           'Sopper Time'
         ];
-        const failsTest2 = flattenedRawPlaces.filter(({ mealType }) => (Array.isArray(mealType) ? mealType : [mealType]).some((type) => !validMealTypes.includes(type))).map(({ name }) => name);;
-        if (failsTest2.length > 0) {
-          throw new Error(`invalid meal types (see ${failsTest2.join(', ')})`);
-        }
+        const invalidPlaces = flattenedRawPlaces.filter((place, index) => {
+          const keys = Object.keys(place);
+          if (keys.some((key) => !validKeys.includes(key))) {
+            return true;
+          }
 
-        const allNames = flattenedRawPlaces.map(({ name }) => name);
-        const duplicateNames = allNames.filter((name, index) => allNames.indexOf(name) !== index);
-        if (duplicateNames.length > 0) {
-          throw new Error(`duplicate place names (see ${duplicateNames.join(', ')})`);
+          const { area, mealType, name, referrerUrl, type, url } = place;
+          if (Array.isArray(area)) {
+            if (area.length === 1 || area.some((element) => typeof element !== 'string' || element === '')) {
+              return true;
+            }
+          } else if ('area' in place && typeof area !== 'string') {
+            return true;
+          }
+
+          if (Array.isArray(mealType)) {
+            if (mealType.length === 1 || mealType.some((element) => !validMealTypes.includes(element))) {
+              return true;
+            }
+          } else if (!validMealTypes.includes(mealType)) {
+            return true;
+          }
+
+          if (typeof name !== 'string' || name === '') {
+            return true;
+          }
+
+          if ('referrerUrl' in place && typeof referrerUrl !== 'string') {
+            return true;
+          }
+
+          if (Array.isArray(type)) {
+            if (type.length === 1 || type.some((element) => !emojisByType[element])) {
+              return true;
+            }
+          } else if (!emojisByType[type]) {
+            return true;
+          }
+
+          if (typeof url !== 'string') {
+            return true;
+          }
+
+          return false;
+        }).map(({ name }) => name);
+        if (invalidPlaces.length > 0) {
+          throw new Error(`invalid place properties: ${invalidPlaces.join(', ')}`)
         }
       }
     }
@@ -2690,20 +2890,18 @@
         });
       }
 
-      if (headingKey === 'area' || headingKey === 'mealType') {
-        const withMultiple = selectedPlaces.filter((place) => Array.isArray(place[headingKey]));
-        withMultiple.forEach((place) => {
-          // can't use index arg here since we are splicing on each iteration
-          selectedPlaces.splice(selectedPlaces.indexOf(place), 1);
-          const { [headingKey]: values, ...rest } = place;
-          values.forEach((value) => {
-            selectedPlaces.push({
-              ...rest,
-              [headingKey]: value
-            });
+    const withMultiple = selectedPlaces.filter((place) => Array.isArray(place[headingKey]));
+      withMultiple.forEach((place) => {
+        // can't use index arg here since we are splicing on each iteration
+        selectedPlaces.splice(selectedPlaces.indexOf(place), 1);
+        const { [headingKey]: values, ...rest } = place;
+        values.forEach((value) => {
+          selectedPlaces.push({
+            ...rest,
+            [headingKey]: value
           });
         });
-      }
+      });
 
       const sortedPlaces = cloneAndSort(selectedPlaces, (a, b) => {
         if (headingKey === 'mealType') {
@@ -2814,9 +3012,17 @@
         places.forEach((place) => {
           const placeElement = document.createElement('div');
 
-          const emojiElement = document.createElement('span');
+          const subHeadingWrapperElement = document.createElement('span');
+
           if (headingKey !== 'type') {
-            emojiElement.innerText = emojisByType[place.type];
+            const emojiElement = document.createElement('span');
+            emojiElement.className = 'emojis';
+
+            (Array.isArray(place.type) ? place.type : [place.type]).forEach((type) => {
+              emojiElement.innerText += emojisByType[type];
+            });
+
+            subHeadingWrapperElement.appendChild(emojiElement);
           }
 
           let subHeadingElement;
@@ -2829,19 +3035,34 @@
           }
           subHeadingElement.className = 'subHeading';
           subHeadingElement.innerText = place.name;
-          emojiElement.appendChild(subHeadingElement);
+          subHeadingWrapperElement.appendChild(subHeadingElement);
+
+          if (place.isGlobal) {
+            subHeadingWrapperElement.append(' (Global)')
+          }
 
           const notesElement = document.createElement('div');
           notesElement.innerHTML = place.notes;
 
-          placeElement.appendChild(emojiElement);
+          placeElement.appendChild(subHeadingWrapperElement);
+
+          if (place.referrerUrl) {
+            const referrerLink = document.createElement('a');
+            referrerLink.href = place.referrerUrl;
+            referrerLink.target = '_blank';
+            referrerLink.className = 'referrer';
+            referrerLink.innerText = 'Where I Found It';
+            placeElement.appendChild(referrerLink);
+          }
+
           if (headingKey !== 'type' || place.area) {
             const areaOrTypeElement = document.createElement('span');
             const maybeArrayToString = (maybeArray) => (Array.isArray(maybeArray) ? cloneAndSort(maybeArray, (a, b) => {
               return a.toLowerCase() > b.toLowerCase() ? 1 : -1;
             }).join(', ') : maybeArray);
             const areaString = maybeArrayToString(place.area);
-            areaOrTypeElement.innerText = headingKey === 'type' ? areaString : place.type;
+            const typeString = maybeArrayToString(place.type);
+            areaOrTypeElement.innerText = headingKey === 'type' ? areaString : typeString;
             if (headingKey === 'mealType') {
               if (areaString) {
                 areaOrTypeElement.innerText += ` (${areaString})`;

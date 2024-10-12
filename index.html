@@ -53,7 +53,14 @@
     }
 
     .referrer {
+      background: transparent;
+      border: 0;
       color: #e8a61a;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 0;
+      text-align: left;
+      text-decoration: underline;
     }
 
     .body {
@@ -1757,6 +1764,15 @@
             referrerUrl: 'https://vt.tiktok.com/ZS2TVWGAF',
             type: 'Japanese',
             url: 'https://maps.app.goo.gl/GsxKDyKhuPwGbYQY7'
+          },
+          {
+            area: 'Abbotsford',
+            mealType: 'Lunch',
+            name: "Kelso's Sandwich Shoppe",
+            notes: 'Chopped cheeses',
+            referrerUrl: () => confirm('My friend Rafi :)'),
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/7T29zxQbuHCJJy5f7'
           }
         ],
         Sydney: [
@@ -2776,7 +2792,7 @@
             return true;
           }
 
-          if ('referrerUrl' in place && typeof referrerUrl !== 'string') {
+          if ('referrerUrl' in place && typeof referrerUrl !== 'string' && typeof referrerUrl !== 'function') {
             return true;
           }
 
@@ -3110,9 +3126,18 @@
           placeElement.appendChild(subHeadingWrapperElement);
 
           if (place.referrerUrl) {
-            const referrerLink = document.createElement('a');
-            referrerLink.href = place.referrerUrl;
-            referrerLink.target = '_blank';
+            let referrerLink;
+
+            if (typeof place.referrerUrl === 'function') {
+              referrerLink = document.createElement('button');
+              referrerLink.href = '#';
+              referrerLink.addEventListener('click', place.referrerUrl);
+            } else {
+              referrerLink = document.createElement('a');
+              referrerLink.href = place.referrerUrl;
+              referrerLink.target = '_blank';
+            }
+
             referrerLink.className = 'referrer';
             referrerLink.innerText = 'Where I Found It';
             placeElement.appendChild(referrerLink);

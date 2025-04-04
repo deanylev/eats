@@ -208,13 +208,14 @@
       'Ice Cream': '🍦',
       Indian: '🇮🇳',
       Israeli: '🇮🇱',
-      Italian: '🍝',
+      Italian: '🇮🇹',
       Jamaican: '🇯🇲',
       Japanese: '🍣',
       Market: '🛒',
       Mexican: '🌮',
       Mediterranean: '🌊',
       Pancakes: '🥞',
+      Pasta: '🍝',
       Pizza: '🍕',
       Poke: '🍲',
       Pub: '🍻',
@@ -861,6 +862,15 @@
             notes: 'Not quite as good as Ohana before it, but the pizzas are still very solid',
             type: 'Pizza',
             url: 'https://maps.app.goo.gl/fHwvVZAxWDC55Wkf9'
+          },
+          {
+            area: 'Brighton East',
+            mealType: ['Breakfast', 'Lunch'],
+            name: 'Brother Brew Cafe',
+            notes: 'Great challah chicken club sandwich and coffee',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBW4VVJ/',
+            type: 'Cafe',
+            url: 'https://maps.app.goo.gl/prWQ4xVLGA94CH84A'
           }
         ],
         'Philip Island': [
@@ -1976,6 +1986,78 @@
             referrerUrl: 'https://vt.tiktok.com/ZSMjX9vFB',
             type: 'Bakery',
             url: 'https://maps.app.goo.gl/DUAkYbi783CyDbAk8'
+          },
+          {
+            area: 'Port Melbourne',
+            mealType: 'Sopper Time',
+            name: 'Tikka Twist',
+            notes: 'Brand new, apparently great food',
+            referrerUrl: () => confirm('Fiona'),
+            type: 'Indian',
+            url: 'https://maps.app.goo.gl/J3JUMKoispgEfgJH9'
+          },
+          {
+            area: 'Bentleigh',
+            mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
+            name: "ChiChi's",
+            notes: 'Sandwiches look solid as',
+            referrerUrl: 'https://vt.tiktok.com/ZSrB7j81V',
+            type: ['Israeli', 'Sandwiches'],
+            url: 'https://maps.app.goo.gl/Bo2x8PFZfPciwWkE8'
+          },
+          {
+            area: 'Richmond',
+            mealType: ['Breakfast', 'Lunch'],
+            name: 'Heart Coffee',
+            notes: 'Sandwiches and cinnamon scrolls look great',
+            referrerUrl: 'https://vt.tiktok.com/ZSrB7J9Yp',
+            type: 'Cafe',
+            url: 'https://maps.app.goo.gl/9UbmbZ2FZGjNC7Qw8'
+          },
+          {
+            area: 'Cheltenham',
+            mealType: 'Lunch',
+            name: "Robin's Deli",
+            notes: "Nashville fried chicken sandwich on that fluffy Japanese white bread looks fucked up (lamb sandwich doesn't look half bad either)",
+            referrerUrl: 'https://vt.tiktok.com/ZSrB7SDvh',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/FpFTgN2HhPAvzG5C7'
+          },
+          {
+            area: 'Moorabbin',
+            mealType: 'Lunch',
+            name: "Marko's Schnitzel",
+            notes: 'If Subway and Schnitz had a baby',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBvWan8',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/J1L8n4Cur7UmXVhh9'
+          },
+          {
+            area: 'Hawthorn',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'The Resistance Burgers, Bar & Cafe',
+            notes: 'Berders look amazing, will have to try next time I go to Lido',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBcdjwn',
+            type: 'Berders',
+            url: 'https://vt.tiktok.com/ZSrBcdjwn'
+          },
+          {
+            area: 'Coburg',
+            mealType: ['Breakfast', 'Lunch'],
+            name: 'Officer Coffee',
+            notes: "Coffee and cinnamon scrolls sound amazing, I'm sure the food must be great too",
+            referrerUrl: 'https://vt.tiktok.com/ZSrBcJthf',
+            type: 'Cafe',
+            url: 'https://maps.app.goo.gl/6jdMiT7sTY9AozD17'
+          },
+          {
+            area: 'CBD',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'The Gnocchi Project',
+            notes: 'Looks great',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBcytpA',
+            type: 'Pasta',
+            url: 'https://maps.app.goo.gl/sYL6jsUHSt5uueHY6'
           }
         ],
         Sydney: [
@@ -2110,8 +2192,17 @@
             referrerUrl: 'https://vt.tiktok.com/ZS6NCc1T6',
             type: 'Sandwiches',
             url: 'https://maps.app.goo.gl/cvsYCK3cAznvd95YA'
+          },
+          {
+            area: 'Bondi Beach',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Da Orazio',
+            notes: 'Vodka pasta is apparently amazing',
+            referrerUrl: () => confirm('Ols'),
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/cSa9r93DUtvPcB1H6'
           }
-        ],
+        ]
       },
       Canada: {
         Toronto: [
@@ -2248,6 +2339,7 @@
             mealType: 'Snacc',
             name: 'Vivoli',
             notes: 'Apparently the best affogato ever',
+            referrerUrl: 'https://vt.tiktok.com/ZSrB7m3TH',
             type: 'Ice Cream',
             url: 'https://maps.app.goo.gl/8LMivVBk58W32VGt5'
           },
@@ -2389,7 +2481,7 @@
       UK: {
         London: [
           {
-            area: ['Central London', 'East London', 'South London', 'West London'],
+            area: 'Everywhere',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Butchies',
             notes: 'The fried chicken looks absolutely unbelievable',
@@ -2397,7 +2489,7 @@
             url: 'https://butchies.co.uk'
           },
           {
-            area: 'Central London',
+            area: 'Soho',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Supernova',
             notes: 'The berders and ice cream look fantastic',
@@ -2405,7 +2497,7 @@
             url: 'https://maps.app.goo.gl/eoomAzFr63U7QUkj9'
           },
           {
-            area: ['Central London', 'City of London', 'East London', 'West London'],
+            area: 'Everywhere',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Bleecker Burger',
             notes: 'Some say overrated but they look like pretty solid berders',
@@ -2413,7 +2505,7 @@
             url: 'https://www.bleecker.co.uk'
           },
           {
-            area: 'Central London',
+            area: 'Camden',
             mealType: 'Sopper Time',
             name: 'Manna',
             notes: 'Look like absolutely solid smash berders',
@@ -2421,7 +2513,7 @@
             url: 'https://maps.app.goo.gl/mf57av4CfvxdMq3q6'
           },
           {
-            area: 'North London',
+            area: 'Finsbury Park',
             mealType: 'Sopper Time',
             name: 'The Plimsoll',
             notes: 'Apparently the best berders in London',
@@ -2429,7 +2521,7 @@
             url: 'https://maps.app.goo.gl/3DFcQE2UFCnKvT7T7'
           },
           {
-            area: 'Central London',
+            area: 'Southwark',
             mealType: ['Snacc', 'Lunch'],
             name: 'Borough Market',
             notes: 'The mac and cheese, sandwiches, dumplings and more here look crazy',
@@ -2437,7 +2529,7 @@
             url: 'https://maps.app.goo.gl/RvG6nJXE3fdQQ9Z79'
           },
           {
-            area: 'Central London',
+            area: 'Soho',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'The Devonshire',
             notes: 'The in-house dry-aged roast looks so good',
@@ -2455,16 +2547,16 @@
           },
           {
             ...globalPlaces.hawksmoor,
-            area: ['Central London', 'City of London', 'East London', 'South London', 'West London'],
+            area: 'Everywhere',
             url: 'https://thehawksmoor.com'
           },
           {
             ...globalPlaces.cipriani,
-            area: 'Central London',
+            area: 'Mayfair',
             url: 'https://maps.app.goo.gl/UG9qA2JdFMPH4XgCA'
           },
           {
-            area: 'Central London',
+            area: ['Chelsea', 'Marylebone'],
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Alley Cats Pizza',
             notes: 'Proper New York style, ranch included',
@@ -2473,16 +2565,7 @@
             url: 'https://www.alleycatspizza.co.uk'
           },
           {
-            area: 'West London',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Crisp Pizza',
-            notes: "Google stars are bad but the TikTok said it's amazing so ¯\\_(ツ)_/¯",
-            referrerUrl: 'https://vt.tiktok.com/ZS2WwHJJj',
-            type: 'Pizza',
-            url: 'https://maps.app.goo.gl/1CDCe84BfvDNusXJ9'
-          },
-          {
-            area: 'West London',
+            area: 'Notting Hill',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: 'Sunday in Brooklyn',
             notes: 'Apparently great pancakes but everything else on the menu seems great',
@@ -2491,7 +2574,7 @@
             url: 'https://maps.app.goo.gl/Mp5WBzGvW443ci167'
           },
           {
-            area: 'East London',
+            area: 'Lower Clapton',
             mealType: 'Sopper Time',
             name: "Tom's Pasta",
             notes: 'Lasagna and garlic bread look to die for',
@@ -2500,13 +2583,22 @@
             url: 'https://maps.app.goo.gl/hscKa57eiJJLSV9H6'
           },
           {
-            area: 'Central London',
+            area: 'Mayfair',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Gymkhana',
             notes: 'Apparently some of the best Indian food in the world',
             referrerUrl: 'https://vt.tiktok.com/ZSjKPQKWV',
             type: 'Indian',
             url: 'https://maps.app.goo.gl/17kn6MpFMQU2xZBKA'
+          },
+          {
+            area: 'Soho',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Grasso',
+            notes: 'Apparently the best Italian in London',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBvuset',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/HFgZW49xdZ1RPF5A7'
           }
         ]
       },
@@ -3188,6 +3280,44 @@
             referrerUrl: 'https://vt.tiktok.com/ZS6spcGpt',
             type: 'Sandwiches',
             url: 'https://maps.app.goo.gl/znL55Yqk4EJyFcSV6'
+          },
+          {
+            area: 'Downtown',
+            mealType: 'Lunch',
+            name: "Diso's Sandwich",
+            notes: "Jimmy Fallon's favourite sandwich in NYC, apparently a lot of SNL cast members eat here too",
+            referrerUrl: 'https://vt.tiktok.com/ZSrBvU9rQ',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/C6P1tHQPX9DBc1XQA'
+          },
+          {
+            area: 'Brooklyn',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'The Snail',
+            notes: 'Opened by a 4 Charles alum, except walk in only thank god. Berder looks amazing',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBvthyj',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/D3rZH531p7Q2C1XD7'
+          },
+          {
+            area: 'East Side',
+            mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
+            name: 'Golden Diner',
+            notes: 'Apparently the best pancakes in the country',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBcrJLF',
+            type: 'Diner',
+            url: 'https://maps.app.goo.gl/xFg28Sp3pPdhS7fg8'
+          }
+        ],
+        Philadelphia: [
+          {
+            area: 'Roxborough',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Dalessandro's Steaks",
+            notes: 'Apparently this is *the* place to go for philly cheesesteaks',
+            referrerUrl: 'https://vt.tiktok.com/ZSrB7a13x',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/BBuspLuvtRJu1BvZ9'
           }
         ],
         'San Francisco': [

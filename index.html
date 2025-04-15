@@ -3427,7 +3427,7 @@
 
     const filtersContainerElement = document.getElementById('filtersContainer');
     const filters = new Set();
-    const excluded = new Set(hashData.excluded || tryParseJson(localStorage.getItem('excluded'), []));
+    const excluded = new Set(hashData.excluded || []);
     document.querySelectorAll('.filterControls > button').forEach((button) => {
       button.addEventListener('click', (event) => {
         if (event.target.dataset.type === 'clearAll') {
@@ -3443,43 +3443,39 @@
     });
 
     const cityElement = document.getElementById('city');
-    let selectedCity = hashData.city || localStorage.getItem('city') || 'Melbourne';
+    let selectedCity = hashData.city || 'Melbourne';
     cityElement.value = selectedCity;
     cityElement.addEventListener('change', (event) => {
       selectedCity = event.target.value;
       excluded.clear();
       setPlaces(true);
-      localStorage.setItem('city', selectedCity);
     });
 
     const mealTypeElement = document.getElementById('mealType');
-    let selectedMealType = hashData.mealType || localStorage.getItem('mealType') || 'Any';
+    let selectedMealType = hashData.mealType || 'Any';
     mealTypeElement.value = selectedMealType;
     mealTypeElement.addEventListener('change', (event) => {
       const wasExcluded = [...excluded];
       selectedMealType = event.target.value;
       excluded.clear();
       setPlaces(false, wasExcluded);
-      localStorage.setItem('mealType', selectedMealType);
     });
 
     const categoryElement = document.getElementById('category');
     const mealTypeCategoryElement = document.getElementById('mealTypeCategory');
-    categoryElement.value = hashData.category || localStorage.getItem('category') || 'area';
+    categoryElement.value = hashData.category || 'area';
     categoryElement.addEventListener('change', (event) => {
       excluded.clear();
       setPlaces();
-      localStorage.setItem('category', event.target.value);
     });
 
     const statusElement = document.getElementById('status');
-    statusElement.value = hashData.status || localStorage.getItem('status') || 'tried';
+    statusElement.value = hashData.status || 'tried';
     statusElement.addEventListener('change', (event) => {
       const wasExcluded = [...excluded];
       excluded.clear();
       setCities();
       setPlaces(true, wasExcluded);
-      localStorage.setItem('status', event.target.value);
     });
 
     const cloneAndSort = (array, callback) => [...array].sort(callback);
@@ -3514,7 +3510,6 @@
       if (!allCities.includes(selectedCity)) {
         selectedCity = allCities[0];
         cityElement.value = selectedCity;
-        localStorage.setItem('city', selectedCity);
       }
 
       let selectedPlaces = [
@@ -3646,7 +3641,6 @@
       });
 
       const excludedArray = [...excluded];
-      localStorage.setItem('excluded', JSON.stringify(excludedArray));
 
       location.hash = encodeURIComponent(JSON.stringify({
         category: categoryElement.value,

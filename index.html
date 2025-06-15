@@ -165,6 +165,7 @@
       <div>
         <label for="status">Status:</label>
         <select id="status">
+          <option value="any">Any</option>
           <option value="tried">Tried</option>
           <option value="wanted">Want to Try</option>
         </select>
@@ -3530,6 +3531,39 @@
       }
     };
 
+    // unalphabetised countries and cities
+    const rawCombinedPlaces = {};
+    for (const places of [triedPlaces, wantedPlaces]) {
+      const isTried = places === triedPlaces;
+
+      Object.entries(places).forEach(([country, cities]) => {
+        if (!rawCombinedPlaces[country]) {
+          rawCombinedPlaces[country] = {};
+        }
+
+        Object.entries(cities).forEach(([city, cityPlaces]) => {
+          if (!rawCombinedPlaces[country][city]) {
+            rawCombinedPlaces[country][city] = [];
+          }
+
+          cityPlaces.forEach((cityPlace) => {
+            cityPlace.isTried = isTried;
+          });
+
+          rawCombinedPlaces[country][city].push(...cityPlaces);
+        });
+      });
+    }
+
+    const combinedPlacesEntries = Object.entries(rawCombinedPlaces)
+      .sort(([countryA], [countryB]) => countryA.localeCompare(countryB))
+      .map(([country, cities]) => {
+        const citiesEntries = Object.entries(cities).sort(([cityA], [cityB]) => cityA.localeCompare(cityB));
+        return [country, Object.fromEntries(citiesEntries)];
+      });
+
+    const combinedPlaces = Object.fromEntries(combinedPlacesEntries);
+
     const tryParseJson = (string, def) => {
       try {
         return JSON.parse(string);
@@ -3545,84 +3579,86 @@
         return wantedPlaces;
       }
 
-      return triedPlaces;
+      if (status === 'tried') {
+        return triedPlaces;
+      }
+
+      return combinedPlaces;
     };
     const flattenRawPlaces = (rawPlaces) => Object.values(rawPlaces).flatMap((places) => Object.values(places).flat());
 
     // tests lol
     const isDev = location.protocol === 'file:';
     if (isDev) {
-      for (const status of ['wanted', 'tried']) {
-        const rawPlaces = getRawPlaces(status);
-        const flattenedRawPlaces = flattenRawPlaces(rawPlaces);
-        const failsTest1 = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere' || area === 'Unknown') && url.includes('maps.app.goo.gl')).map(({ name }) => name);
-        if (failsTest1.length > 0) {
-          throw new Error(`places with multiple locations must link to website (see ${failsTest1.join(', ')})`);
+      const rawPlaces = getRawPlaces('any');
+      const flattenedRawPlaces = flattenRawPlaces(rawPlaces);
+      const failsTest1 = flattenedRawPlaces.filter(({ area, url }) => (Array.isArray(area) || area === 'Everywhere' || area === 'Unknown') && url.includes('maps.app.goo.gl')).map(({ name }) => name);
+      if (failsTest1.length > 0) {
+        throw new Error(`places with multiple locations must link to website (see ${failsTest1.join(', ')})`);
+      }
+
+      const allNames = flattenedRawPlaces.map(({ name }) => name);
+      const duplicateNames = flattenedRawPlaces
+        .filter(({ id, isGlobal, name }, index) => !isGlobal && allNames.indexOf(name) !== index)
+        .map(({ name }) => name);
+      if (duplicateNames.length > 0) {
+        throw new Error(`duplicate place names (see ${duplicateNames.join(', ')})`);
+      }
+
+      const validKeys = ['area', 'isGlobal', 'isTried', 'mealType', 'name', 'notes', 'referrerUrl', 'type', 'url'];
+      const validMealTypes = [
+        'Snacc',
+        'Breakfast',
+        'Lunch',
+        'Sopper Time'
+      ];
+      const invalidPlaces = flattenedRawPlaces.filter((place, index) => {
+        const keys = Object.keys(place);
+        if (keys.some((key) => !validKeys.includes(key))) {
+          return true;
         }
 
-        const allNames = flattenedRawPlaces.map(({ name }) => name);
-        const duplicateNames = flattenedRawPlaces
-          .filter(({ id, isGlobal, name }, index) => !isGlobal && allNames.indexOf(name) !== index)
-          .map(({ name }) => name);
-        if (duplicateNames.length > 0) {
-          throw new Error(`duplicate place names (see ${duplicateNames.join(', ')})`);
+        const { area, mealType, name, referrerUrl, type, url } = place;
+        if (Array.isArray(area)) {
+          if (area.length === 1 || area.some((element) => typeof element !== 'string' || element === '')) {
+            return true;
+          }
+        } else if ('area' in place && typeof area !== 'string') {
+          return true;
         }
 
-        const validKeys = ['area', 'isGlobal', 'mealType', 'name', 'notes', 'referrerUrl', 'type', 'url'];
-        const validMealTypes = [
-          'Snacc',
-          'Breakfast',
-          'Lunch',
-          'Sopper Time'
-        ];
-        const invalidPlaces = flattenedRawPlaces.filter((place, index) => {
-          const keys = Object.keys(place);
-          if (keys.some((key) => !validKeys.includes(key))) {
+        if (Array.isArray(mealType)) {
+          if (mealType.length === 1 || mealType.some((element) => !validMealTypes.includes(element))) {
             return true;
           }
-
-          const { area, mealType, name, referrerUrl, type, url } = place;
-          if (Array.isArray(area)) {
-            if (area.length === 1 || area.some((element) => typeof element !== 'string' || element === '')) {
-              return true;
-            }
-          } else if ('area' in place && typeof area !== 'string') {
-            return true;
-          }
-
-          if (Array.isArray(mealType)) {
-            if (mealType.length === 1 || mealType.some((element) => !validMealTypes.includes(element))) {
-              return true;
-            }
-          } else if (!validMealTypes.includes(mealType)) {
-            return true;
-          }
-
-          if (typeof name !== 'string' || name === '') {
-            return true;
-          }
-
-          if ('referrerUrl' in place && typeof referrerUrl !== 'string' && typeof referrerUrl !== 'function') {
-            return true;
-          }
-
-          if (Array.isArray(type)) {
-            if (type.length === 1 || type.some((element) => !emojisByType[element])) {
-              return true;
-            }
-          } else if (!emojisByType[type]) {
-            return true;
-          }
-
-          if (typeof url !== 'string') {
-            return true;
-          }
-
-          return false;
-        }).map(({ name }) => name);
-        if (invalidPlaces.length > 0) {
-          throw new Error(`invalid place properties: ${invalidPlaces.join(', ')}`)
+        } else if (!validMealTypes.includes(mealType)) {
+          return true;
         }
+
+        if (typeof name !== 'string' || name === '') {
+          return true;
+        }
+
+        if ('referrerUrl' in place && typeof referrerUrl !== 'string' && typeof referrerUrl !== 'function') {
+          return true;
+        }
+
+        if (Array.isArray(type)) {
+          if (type.length === 1 || type.some((element) => !emojisByType[element])) {
+            return true;
+          }
+        } else if (!emojisByType[type]) {
+          return true;
+        }
+
+        if (typeof url !== 'string') {
+          return true;
+        }
+
+        return false;
+      }).map(({ name }) => name);
+      if (invalidPlaces.length > 0) {
+        throw new Error(`invalid place properties: ${invalidPlaces.join(', ')}`)
       }
     }
 
@@ -3674,7 +3710,7 @@
     });
 
     const statusElement = document.getElementById('status');
-    statusElement.value = hashData.status || 'tried';
+    statusElement.value = hashData.status || 'any';
     statusElement.addEventListener('change', (event) => {
       const wasExcluded = [...excluded];
       excluded.clear();
@@ -3922,6 +3958,10 @@
 
           if (place.isGlobal) {
             subHeadingWrapperElement.append(' (Global)')
+          }
+
+          if (statusElement.value === 'any') {
+            subHeadingWrapperElement.append(place.isTried ? ' (TRIED)' : ' (NOT TRIED)');
           }
 
           const notesElement = document.createElement('div');

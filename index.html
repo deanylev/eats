@@ -3988,12 +3988,13 @@
     });
 
     const cityElement = document.getElementById('city');
-    let selectedCity = hashData.city || 'Melbourne';
+    let selectedCity = hashData.city || localStorage.getItem('city') || 'Melbourne';
     cityElement.value = selectedCity;
     cityElement.addEventListener('change', (event) => {
       selectedCity = event.target.value;
       excluded.clear();
       setPlaces(true);
+      localStorage.setItem('city', selectedCity);
     });
 
     const mealTypeElement = document.getElementById('mealType');
@@ -4055,6 +4056,7 @@
       if (!allCities.includes(selectedCity)) {
         selectedCity = allCities[0];
         cityElement.value = selectedCity;
+        localStorage.setItem('city', selectedCity);
       }
 
       let selectedPlaces = [

@@ -213,6 +213,7 @@
       Italian: '🇮🇹',
       Jamaican: '🇯🇲',
       Japanese: '🍣',
+      Kebabs: '🌯',
       Market: '🛒',
       Mexican: '🌮',
       Mediterranean: '🌊',
@@ -1010,6 +1011,84 @@
           }
         ]
       },
+      Bosnia: {
+        Mostar: [
+          {
+            area: 'Old Town',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Dönerland',
+            notes: 'A great break from ćevapi, owners were legends too',
+            type: 'Kebabs',
+            url: 'https://maps.app.goo.gl/QFvKTpzRvirjRXAAA'
+          }
+        ]
+      },
+      England: {
+        London: [
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Bleecker Burger',
+            notes: 'Super juicy berders',
+            type: 'Berders',
+            url: 'https://www.bleecker.co.uk'
+          },
+          {
+            area: ['Soho', 'Spitalfields'],
+            mealType: 'Lunch',
+            name: 'Crunch',
+            notes: 'Michaels Chicken sandwich was amazing',
+            referrerUrl: 'https://vt.tiktok.com/ZSkCoCrcU',
+            type: 'Sandwiches',
+            url: 'https://www.sandwichuprising.com'
+          },
+          {
+            area: 'City of London',
+            mealType: 'Lunch',
+            name: 'Sandwich Sandwich',
+            notes: 'Like Subway but everything is super fresh and clean',
+            referrerUrl: 'https://vt.tiktok.com/ZSkX1cFUv',
+            type: 'Sandwiches',
+            url: 'https://sandwichsandwich.co.uk'
+          },
+          {
+            area: ['Notting Hill', 'Primrose Hill', 'Soho'],
+            mealType: ['Breakfast', 'Lunch'],
+            name: "It's Bagels",
+            notes: "The closest to NY style bagels I've had outside NY",
+            referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
+            type: 'Bagels',
+            url: 'https://www.itsbagels.com'
+          },
+          {
+            area: ['Chelsea', "King's Cross", 'Marylebone', 'Notting Hill'],
+            mealType: ['Breakfast', 'Lunch'],
+            name: 'Granger & Co.',
+            notes: "The ricotta hotcakes live up to the hype, some of the fluffiest pancakes I've ever had",
+            referrerUrl: 'https://vt.tiktok.com/ZSSpHjcLE',
+            type: 'Cafe',
+            url: 'https://www.grangerandco.com/'
+          },
+          {
+            area: ['Battersea', 'Canary Wharf', 'Carnaby', 'Covent Garden', 'Kensington', "King's Cross", 'Shoreditch'],
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Dishoom',
+            notes: "Some of the best Indian food I have ever had, lines are insanely long if you can't get a booking though",
+            referrerUrl: () => confirm('My friend Noz'),
+            type: 'Indian',
+            url: 'https://www.dishoom.com'
+          },
+          {
+            area: 'Camden',
+            mealType: 'Snacc',
+            name: 'Glass Coffee',
+            notes: 'A little stall near Camden Market, some of the best coffee I have ever had, owner is so nice to chat to',
+            referrerUrl: () => confirm('My friend Noz'),
+            type: 'Cafe',
+            url: 'https://maps.app.goo.gl/fJoRp1rwG7XGUCP29'
+          }
+        ]
+      },
       France: {
         Paris: [
           {
@@ -1018,6 +1097,29 @@
             notes: "Really lives up to the hype, don't sleep on the desserts (the meringue tower thing is so good)",
             type: 'Steak',
             url: 'https://maps.app.goo.gl/uRbpuu1huCHpMBkv7'
+          },
+          {
+            mealType: 'Snacc',
+            name: "Terroirs d'Avenir",
+            notes: 'The best croissant I have ever had',
+            referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
+            type: 'Bakery',
+            url: 'https://www.terroirs-avenir.fr'
+          },
+          {
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Dumbo',
+            notes: 'Amazing smashberders and fries',
+            type: 'Berders',
+            url: 'https://www.dumboparis.com'
+          },
+          {
+            mealType: 'Snacc',
+            name: "La Maison d'Isabelle",
+            notes: 'Great croissants',
+            referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
+            type: 'Bakery',
+            url: 'https://maps.app.goo.gl/s3iiegBRxrzcqbRo7'
           }
         ]
       },
@@ -1068,6 +1170,16 @@
             notes: 'The best pizza I have ever had',
             type: 'Italian',
             url: 'https://www.sorbillo.it'
+          }
+        ],
+        Sardinia: [
+          {
+            area: 'Alghero',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Cajò',
+            notes: 'By far the best pizza I had in Sardinia',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/smLREDCfcn1VALNR8'
           }
         ]
       },
@@ -1184,7 +1296,7 @@
         ],
         'New York': [
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: "Katz's Delicatessen",
             notes: 'Truly lives up to the hype',
@@ -1192,7 +1304,7 @@
             url: 'https://maps.app.goo.gl/sLUQUaj5tACoLfwa6'
           },
           {
-            area: ['Brooklyn', 'Downtown', 'East Side', 'Midtown', 'West Side'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: 'Snacc',
             name: 'Levain Bakery',
             notes: 'Cookies are to die for',
@@ -1200,7 +1312,7 @@
             url: 'https://levainbakery.com'
           },
           {
-            area: ['Downtown', 'East Side', 'Midtown', 'Brooklyn'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: ['Lunch', 'Sopper Time'],
             name: "Joe's Pizza",
             notes: "Really solid New York slice, won't blow your mind but very consistent",
@@ -1208,7 +1320,7 @@
             url: 'https://www.joespizzanyc.com'
           },
           {
-            area: 'Midtown',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: "Ellen's Stardust Diner",
             notes: 'The food here absolutely sucks (truly) but the live performances from singers trying to get onto Broadway are great, a must-see just once',
@@ -1216,7 +1328,7 @@
             url: 'https://maps.app.goo.gl/AQFYhGK6Q3pR3Ppb9'
           },
           {
-            area: ['Chelsea Market', 'Downtown', 'Midtown'],
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Los Tacos No.1',
             notes: 'This place is honestly kind of overrated but the tacos are still great',
@@ -1224,7 +1336,7 @@
             url: 'https://www.lostacos1.com'
           },
           {
-            area: 'Chelsea Market',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Miznon',
             notes: 'There is one of these in Melbourne but this one is way better, some of the best pitas I have ever had',
@@ -1232,7 +1344,7 @@
             url: 'https://maps.app.goo.gl/JJRLUK2w3Td71bCv6'
           },
           {
-            area: 'Midtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'OBAO',
             notes: 'Some of the best Thai food I have ever had',
@@ -1240,7 +1352,7 @@
             url: 'https://www.obaony.com'
           },
           {
-            area: ['Downtown', 'East Side'],
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: "Ruby's Cafe",
             notes: 'Great breakfast and coffee',
@@ -1248,7 +1360,7 @@
             url: 'https://www.rubyscafe.com'
           },
           {
-            area: ['Downtown', 'Midtown', 'Brooklyn'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: ['Lunch', 'Sopper Time'],
             name: "Raising Cane's Chicken Fingers",
             notes: "Kind of overhyped but still a must-try just for lols, the breading/seasoning on the chicken is pretty damn tasty (my kid's meal didn't come with texas toast though, so I didn't get to try it 😭)",
@@ -1256,7 +1368,7 @@
             url: 'https://www.raisingcanes.com'
           },
           {
-            area: ['Downtown', 'Midtown'],
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch'],
             name: 'Liberty Bagels',
             notes: 'I had one bite of this on my plane before the flight got cancelled but it was probably the best bagel I have ever had',
@@ -1264,7 +1376,7 @@
             url: 'https://libertybagels.com/locations-2'
           },
           {
-            area: 'Midtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Schnipper's",
             notes: "I only had the chips here (which were great) but my mom said her gluten free berder was the best she'd ever had",
@@ -2167,6 +2279,60 @@
             referrerUrl: 'https://vt.tiktok.com/ZSBDMWwuB',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/4qzSdzL36ouCovU18'
+          },
+          {
+            area: 'Toorak',
+            mealType: 'Lunch',
+            name: 'Casa Del Cibo',
+            notes: 'Apparently some mad Italian sandwiches',
+            referrerUrl: 'https://vt.tiktok.com/ZSSp9rMo2',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/FYkqFb1MzbDKwzvm7'
+          },
+          {
+            area: 'Cremorne',
+            mealType: 'Lunch',
+            name: "Roti John's",
+            notes: 'Malaysian Subway',
+            referrerUrl: 'https://vt.tiktok.com/ZSSp9EPSj',
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/3qC1tt4BojbXM2LAA'
+          },
+          {
+            area: 'Richmond',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Ermou Gyros',
+            notes: 'Some mean looking gyros',
+            referrerUrl: 'https://vt.tiktok.com/ZSSp9EtVP',
+            type: 'Greek',
+            url: 'https://maps.app.goo.gl/kW6QG6UW5rzCsf8k6'
+          },
+          {
+            area: 'Brighton',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Goldieboy Burgers',
+            notes: 'Great looking smashberders and fried chicken berders',
+            referrerUrl: 'https://vt.tiktok.com/ZSSpxLCL1',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/HCt352JR7ySLmUZY9'
+          },
+          {
+            area: 'Brunswick East',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Charrd',
+            notes: 'Great looking berders',
+            referrerUrl: 'https://vt.tiktok.com/ZSSpxqj71',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/YFRqAB7vjNwTMqC17'
+          },
+          {
+            area: 'Moorabbin',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Oh My Souv',
+            notes: 'Solid looking souv',
+            referrerUrl: 'https://vt.tiktok.com/ZSSpxQm1Y',
+            type: 'Greek',
+            url: 'https://maps.app.goo.gl/761nT7SrzSFaCXAh9'
           }
         ],
         Mornington: [
@@ -2429,6 +2595,133 @@
           }
         ]
       },
+      England: {
+        London: [
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Butchies',
+            notes: 'The fried chicken looks absolutely unbelievable',
+            type: 'Fried Chicken',
+            url: 'https://butchies.co.uk'
+          },
+          {
+            area: 'Camden',
+            mealType: 'Sopper Time',
+            name: 'Manna',
+            notes: 'Look like absolutely solid smash berders',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/mf57av4CfvxdMq3q6'
+          },
+          {
+            area: 'Finsbury Park',
+            mealType: 'Sopper Time',
+            name: 'The Plimsoll',
+            notes: 'Apparently the best berders in London',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/3DFcQE2UFCnKvT7T7'
+          },
+          {
+            area: 'Soho',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'The Devonshire',
+            notes: 'The in-house dry-aged roast looks so good',
+            type: 'Pub',
+            url: 'https://maps.app.goo.gl/twGtAZc3X8G9Wpki8'
+          },
+          {
+            area: 'Everywhere',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Morley's",
+            notes: 'This looks pretty shit but check where I found it',
+            referrerUrl: 'https://vt.tiktok.com/ZS21P6YpF',
+            type: 'Fried Chicken',
+            url: 'https://www.morleyschicken.com'
+          },
+          {
+            ...globalPlaces.hawksmoor,
+            area: 'Everywhere',
+            url: 'https://thehawksmoor.com'
+          },
+          {
+            ...globalPlaces.cipriani,
+            area: 'Mayfair',
+            url: 'https://maps.app.goo.gl/UG9qA2JdFMPH4XgCA'
+          },
+          {
+            area: ['Chelsea', 'Marylebone'],
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Alley Cats Pizza',
+            notes: 'Proper New York style, ranch included',
+            referrerUrl: 'https://vt.tiktok.com/ZS2WwMLQv',
+            type: 'Italian',
+            url: 'https://www.alleycatspizza.co.uk'
+          },
+          {
+            area: 'Notting Hill',
+            mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
+            name: 'Sunday in Brooklyn',
+            notes: 'Apparently great pancakes but everything else on the menu seems great',
+            referrerUrl: 'https://vt.tiktok.com/ZS2TQmpnT',
+            type: 'American',
+            url: 'https://maps.app.goo.gl/Mp5WBzGvW443ci167'
+          },
+          {
+            area: 'Lower Clapton',
+            mealType: 'Sopper Time',
+            name: "Tom's Pasta",
+            notes: 'Lasagna and garlic bread look to die for',
+            referrerUrl: 'https://vt.tiktok.com/ZS2TCdYnU',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/hscKa57eiJJLSV9H6'
+          },
+          {
+            area: 'Mayfair',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Gymkhana',
+            notes: 'Apparently some of the best Indian food in the world',
+            referrerUrl: 'https://vt.tiktok.com/ZSjKPQKWV',
+            type: 'Indian',
+            url: 'https://maps.app.goo.gl/17kn6MpFMQU2xZBKA'
+          },
+          {
+            area: 'Soho',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Grasso',
+            notes: 'Apparently the best Italian in London',
+            referrerUrl: 'https://vt.tiktok.com/ZSrBvuset',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/HFgZW49xdZ1RPF5A7'
+          },
+          {
+            area: 'Hoxton',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Schnitzel Heaven',
+            notes: 'Meant to be some of the best schnitzels around',
+            referrerUrl: 'https://vt.tiktok.com/ZSkXJqcuy',
+            type: 'European',
+            url: 'https://maps.app.goo.gl/HXFAHK6ccWauHsbN7'
+          },
+          {
+            area: 'Borough',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Heard.',
+            notes: 'Michelin chef smashberders',
+            referrerUrl: 'https://vt.tiktok.com/ZSSp9ahyA',
+            type: 'Berders',
+            url: 'https://maps.app.goo.gl/o4bzrroxY2m1XqTW9'
+          },
+          {
+            area: 'Covent Garden',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Kung Fu Mama',
+            notes: 'Fresh looking noodles',
+            referrerUrl: 'https://vt.tiktok.com/ZSSp9oQJ1',
+            type: 'Asian',
+            url: 'https://maps.app.goo.gl/ncC2fXk68gd24Vo96'
+          }
+        ]
+      },
       France: {
         Paris: [
           {
@@ -2440,26 +2733,11 @@
           },
           {
             mealType: ['Lunch', 'Sopper Time'],
-            name: 'Dumbo',
-            notes: 'Smash berders look unbelievable',
-            type: 'Berders',
-            url: 'https://www.dumboparis.com'
-          },
-          {
-            mealType: ['Lunch', 'Sopper Time'],
             name: 'Chez Janou',
             notes: 'Only really care about the mousse tbh',
             referrerUrl: 'https://vt.tiktok.com/ZS2W3kEWa',
             type: 'French',
             url: 'https://maps.app.goo.gl/SNP5Ys2pTZHHXqxJ6'
-          },
-          {
-            mealType: 'Lunch',
-            name: 'Chez Alain Miam Miam',
-            notes: 'Apparently the best sandwiches in Paris',
-            referrerUrl: 'https://vt.tiktok.com/ZS6UBLhQm',
-            type: 'Sandwiches',
-            url: 'https://maps.app.goo.gl/xjjr4cYKHqy991v96'
           },
           {
             mealType: 'Sopper Time',
@@ -2503,27 +2781,11 @@
           },
           {
             mealType: 'Snacc',
-            name: "La Maison d'Isabelle",
-            notes: 'Croissants',
-            referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
-            type: 'Bakery',
-            url: 'https://maps.app.goo.gl/s3iiegBRxrzcqbRo7'
-          },
-          {
-            mealType: 'Snacc',
             name: 'Poilâne',
             notes: 'More carbs',
             referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
             type: 'Bakery',
             url: 'https://www.poilane.com/en'
-          },
-          {
-            mealType: 'Snacc',
-            name: "Terroirs d'Avenir",
-            notes: 'The best croissants apparently',
-            referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
-            type: 'Bakery',
-            url: 'https://www.terroirs-avenir.fr'
           },
           {
             mealType: 'Snacc',
@@ -2694,187 +2956,15 @@
             notes: 'Hierdie berders lyk so goed',
             type: 'Berders',
             url: 'https://maps.app.goo.gl/wNhctRCPkUbv3QzV6'
-          }
-        ]
-      },
-      Spain: {
-        Madrid: [
-          {
-            area: 'Centro',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Botín',
-            notes: 'The oldest restaurant in the world, their pork dishes looks amazing (and crazy expensive)',
-            type: 'Spanish',
-            url: 'https://maps.app.goo.gl/gw6RR6qNbrUqLnAg6'
-          }
-        ]
-      },
-      UK: {
-        London: [
-          {
-            area: 'Everywhere',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Butchies',
-            notes: 'The fried chicken looks absolutely unbelievable',
-            type: 'Fried Chicken',
-            url: 'https://butchies.co.uk'
           },
           {
-            area: 'Soho',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Supernova',
-            notes: 'The berders and ice cream look fantastic',
-            type: 'Berders',
-            url: 'https://maps.app.goo.gl/eoomAzFr63U7QUkj9'
-          },
-          {
-            area: 'Everywhere',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Bleecker Burger',
-            notes: 'Some say overrated but they look like pretty solid berders',
-            type: 'Berders',
-            url: 'https://www.bleecker.co.uk'
-          },
-          {
-            area: 'Camden',
-            mealType: 'Sopper Time',
-            name: 'Manna',
-            notes: 'Look like absolutely solid smash berders',
-            type: 'Berders',
-            url: 'https://maps.app.goo.gl/mf57av4CfvxdMq3q6'
-          },
-          {
-            area: 'Finsbury Park',
-            mealType: 'Sopper Time',
-            name: 'The Plimsoll',
-            notes: 'Apparently the best berders in London',
-            type: 'Berders',
-            url: 'https://maps.app.goo.gl/3DFcQE2UFCnKvT7T7'
-          },
-          {
-            area: 'Southwark',
-            mealType: ['Snacc', 'Lunch'],
-            name: 'Borough Market',
-            notes: 'The mac and cheese, sandwiches, dumplings and more here look crazy',
-            type: 'Market',
-            url: 'https://maps.app.goo.gl/RvG6nJXE3fdQQ9Z79'
-          },
-          {
-            area: 'Soho',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'The Devonshire',
-            notes: 'The in-house dry-aged roast looks so good',
-            type: 'Pub',
-            url: 'https://maps.app.goo.gl/twGtAZc3X8G9Wpki8'
-          },
-          {
-            area: 'Everywhere',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: "Morley's",
-            notes: 'This looks pretty shit but check where I found it',
-            referrerUrl: 'https://vt.tiktok.com/ZS21P6YpF',
-            type: 'Fried Chicken',
-            url: 'https://www.morleyschicken.com'
-          },
-          {
-            ...globalPlaces.hawksmoor,
-            area: 'Everywhere',
-            url: 'https://thehawksmoor.com'
-          },
-          {
-            ...globalPlaces.cipriani,
-            area: 'Mayfair',
-            url: 'https://maps.app.goo.gl/UG9qA2JdFMPH4XgCA'
-          },
-          {
-            area: ['Chelsea', 'Marylebone'],
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Alley Cats Pizza',
-            notes: 'Proper New York style, ranch included',
-            referrerUrl: 'https://vt.tiktok.com/ZS2WwMLQv',
-            type: 'Italian',
-            url: 'https://www.alleycatspizza.co.uk'
-          },
-          {
-            area: 'Notting Hill',
-            mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
-            name: 'Sunday in Brooklyn',
-            notes: 'Apparently great pancakes but everything else on the menu seems great',
-            referrerUrl: 'https://vt.tiktok.com/ZS2TQmpnT',
-            type: 'American',
-            url: 'https://maps.app.goo.gl/Mp5WBzGvW443ci167'
-          },
-          {
-            area: 'Lower Clapton',
-            mealType: 'Sopper Time',
-            name: "Tom's Pasta",
-            notes: 'Lasagna and garlic bread look to die for',
-            referrerUrl: 'https://vt.tiktok.com/ZS2TCdYnU',
-            type: 'Italian',
-            url: 'https://maps.app.goo.gl/hscKa57eiJJLSV9H6'
-          },
-          {
-            area: 'Mayfair',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Gymkhana',
-            notes: 'Apparently some of the best Indian food in the world',
-            referrerUrl: 'https://vt.tiktok.com/ZSjKPQKWV',
-            type: 'Indian',
-            url: 'https://maps.app.goo.gl/17kn6MpFMQU2xZBKA'
-          },
-          {
-            area: 'Soho',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Grasso',
-            notes: 'Apparently the best Italian in London',
-            referrerUrl: 'https://vt.tiktok.com/ZSrBvuset',
-            type: 'Italian',
-            url: 'https://maps.app.goo.gl/HFgZW49xdZ1RPF5A7'
-          },
-          {
-            area: 'Spitalfields',
-            mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
-            name: 'Beigel Bake',
-            notes: 'I have been told these are outstanding',
-            referrerUrl: () => confirm('Ben'),
-            type: 'Bagels',
-            url: 'https://maps.app.goo.gl/tBNxZPkm3B5EkQGV8'
-          },
-          {
-            area: ['Soho', 'Spitalfields'],
+            area: 'Green Point',
             mealType: 'Lunch',
-            name: 'Crunch',
-            notes: 'Gotta try that fried chicken',
-            referrerUrl: 'https://vt.tiktok.com/ZSkCoCrcU',
-            type: 'Sandwiches',
-            url: 'https://www.sandwichuprising.com'
-          },
-          {
-            area: 'City of London',
-            mealType: 'Lunch',
-            name: 'Sandwich Sandwich',
-            notes: 'High quality Subway',
-            referrerUrl: 'https://vt.tiktok.com/ZSkX1cFUv',
-            type: 'Sandwiches',
-            url: 'https://sandwichsandwich.co.uk'
-          },
-          {
-            area: 'Hoxton',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: 'Schnitzel Heaven',
-            notes: 'Meant to be some of the best schnitzels around',
-            referrerUrl: 'https://vt.tiktok.com/ZSkXJqcuy',
-            type: 'European',
-            url: 'https://maps.app.goo.gl/HXFAHK6ccWauHsbN7'
-          },
-          {
-            area: ['Notting Hill', 'Primrose Hill', 'Soho'],
-            mealType: ['Breakfast', 'Lunch'],
-            name: "It's Bagels",
-            notes: 'Looks like proper New York style',
-            referrerUrl: 'https://vt.tiktok.com/ZSBDjQ57H',
-            type: 'Bagels',
-            url: 'https://www.itsbagels.com'
+            name: "Giovanni's",
+            notes: 'Apparently must try sandwiches',
+            referrerUrl: () => confirm('My friend Oli'),
+            type: 'Deli',
+            url: 'https://maps.app.goo.gl/5KqWfyeWUkKwjpAb7'
           }
         ]
       },
@@ -3271,10 +3361,9 @@
             url: 'https://maps.app.goo.gl/eewKkxiUA8UAfHWo7'
           }
         ],
-        // https://en.wikipedia.org/wiki/List_of_Manhattan_neighborhoods
         'New York': [
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: 'Sopper Time',
             name: '4 Charles Prime Rib',
             notes: 'Meant to be the best berder in NYC, and the truffle mac and cheese + chocolate pie look absolutely unbelievable',
@@ -3282,7 +3371,7 @@
             url: 'https://maps.app.goo.gl/tPUxEgewTZcFJfm27'
           },
           {
-            area: 'West Side',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Mama's TOO!",
             notes: 'Meant to be some of the best pizza in NYC',
@@ -3290,7 +3379,7 @@
             url: 'https://maps.app.goo.gl/GMcUCepVJiWGz5Ua9'
           },
           {
-            area: 'West Side',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Maison Pickle',
             notes: '24 layer chocolate cake...',
@@ -3298,7 +3387,7 @@
             url: 'https://maps.app.goo.gl/5e4L8TjTGtF1Q9jg7'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: "Bubby's",
             notes: 'Pancakes are meant to be amazing',
@@ -3306,7 +3395,7 @@
             url: 'https://maps.app.goo.gl/W9WwNyyWubu1oA3c8'
           },
           {
-            area: ['East Side', 'Downtown', 'West Side'],
+            area: 'Manhattan',
             mealType: 'Snacc',
             name: 'Chip City',
             notes: "Not sure it can hold up to Levain but one way to find out",
@@ -3314,7 +3403,7 @@
             url:' https://chipcitycookies.com'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Carbone',
             notes: 'Pretty spenny',
@@ -3330,7 +3419,7 @@
             url: 'https://maps.app.goo.gl/mbDmF1sKrK3TNZ6h7'
           },
           {
-            area: ['Downtown', 'East Side'],
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch'],
             name: 'Tompkins Square Bagels',
             notes: 'Bagels look so good',
@@ -3338,7 +3427,7 @@
             url: 'https://www.tompkinssquarebagels.com'
           },
           {
-            area: ['Downtown', 'Brooklyn'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: 'Snacc',
             name: 'Kith Treats',
             notes: 'Ice cream with toppings',
@@ -3346,7 +3435,7 @@
             url: 'https://kith.com'
           },
           {
-            area: ['Midtown', 'West Side'],
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Carmine's",
             notes: 'Italian food that is 4.5 out of 15k reviews, nuff said',
@@ -3354,7 +3443,7 @@
             url: 'https://www.carminesnyc.com'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Prince Street Pizza',
             notes: 'S Q U A R E',
@@ -3362,7 +3451,7 @@
             url: 'https://maps.app.goo.gl/vmFTPcT31DHyVPA67'
           },
           {
-            area: 'Upper Manhattan',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: "Tom's",
             notes: "I only want to go here because it's the Seinfeld diner",
@@ -3370,7 +3459,7 @@
             url: 'https://maps.app.goo.gl/TsJ9AFV63zsQmQkT6'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Fiaschetteria "Pistoia"',
             notes: 'This place is "Tuscan" according to Google, whatever that actually means',
@@ -3378,7 +3467,7 @@
             url: 'https://www.fiaschetteriapistoia.com'
           },
           {
-            area: ['Midtown', 'Downtown'],
+            area: 'Manhattan',
             mealType: 'Lunch',
             name: 'ALIDORO',
             notes: 'Italian deli sandwiches that look to die for',
@@ -3386,7 +3475,7 @@
             url: 'https://www.alidoronyc.com'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Hamburger America',
             notes: 'These smash berders look so good',
@@ -3394,7 +3483,7 @@
             url: 'https://maps.app.goo.gl/6dZaugr3W3PTUCtw5'
           },
           {
-            area: 'Midtown',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch'],
             name: 'Best Bagel & Coffee',
             notes: 'Very big call right in the name',
@@ -3402,7 +3491,7 @@
             url: 'https://maps.app.goo.gl/aTWPG3adMzVzcJt36'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Bar Pitti',
             notes: 'One of the more authentic Italian places, apparently the bolognese is great',
@@ -3410,7 +3499,7 @@
             url: 'https://maps.app.goo.gl/MLiZKMANHtPDWijn7'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: 'Snacc',
             name: 'La Cabra',
             notes: 'Apparently the cardamom buns are to die for',
@@ -3418,7 +3507,7 @@
             url: 'https://www.lacabra.dk'
           },
           {
-            area: ['Brooklyn', 'Downtown'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Emily',
             notes: 'This is actually a pizza place but apparently the berder is one of the best in New York',
@@ -3426,7 +3515,7 @@
             url: 'https://www.pizzalovesemily.com'
           },
           {
-            area: ['Downtown', 'Midtown'],
+            area: 'Manhattan',
             mealType: 'Snacc',
             name: '99 Cent Fresh Pizza',
             notes: 'Name sums it up, be sure to bring cash',
@@ -3434,7 +3523,7 @@
             url: 'https://www.99centsfreshpizzanyc.com'
           },
           {
-            area: ['Brooklyn', 'Midtown'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Ichiran',
             notes: "Looks like an introvert's dream",
@@ -3442,7 +3531,7 @@
             url: 'https://www.ichiranusa.com'
           },
           {
-            area: ['Brooklyn', 'Downtown', 'East Side', 'Midtown', 'West Side'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: ['Lunch', 'Sopper Time'],
             name: '7th Street Burger',
             notes: 'These smash berders look unreal',
@@ -3450,7 +3539,7 @@
             url: 'https://7thstreetburger.com'
           },
           {
-            area: 'Midtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Virgil's Real BBQ",
             notes: 'Looks like some of the best BBQ around',
@@ -3482,7 +3571,7 @@
             url: 'https://maps.app.goo.gl/HrexEEHJQoMhNzYu9'
           },
           {
-            area: ['Brooklyn', 'Downtown'],
+            area: ['Brooklyn', 'Manhattan'],
             mealType: ['Lunch', 'Sopper Time'],
             name: 'LUCIA',
             notes: 'Pizza slices look amazing, apparently the vodka slice is the best',
@@ -3490,7 +3579,7 @@
             url: 'https://lucia.pizza'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: 'Snacc',
             name: 'Bel-Fries',
             notes: 'I am hoping this can be a taste of Manneken Pis without having to go all the way to Amsterdam',
@@ -3498,7 +3587,7 @@
             url: 'https://maps.app.goo.gl/5bzA43oPM8K7LBhJ6'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Au Cheval',
             notes: 'Same team behind 4 Charles, apparently same berder too',
@@ -3506,7 +3595,7 @@
             url: 'https://maps.app.goo.gl/o9vrkHVXz6uE6ZTy7'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Gotham Burger Social Club',
             notes: 'Apparently the best smash berder in NYC',
@@ -3514,7 +3603,7 @@
             url: 'https://maps.app.goo.gl/ewxzevMJa5KvFpPa8'
           },
           {
-            area: ['Uptown', 'West Side'],
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Charles Pan-Fried Chicken',
             notes: 'Fried chicken and other soul food here looks unreal',
@@ -3522,7 +3611,7 @@
             url: 'https://www.charlespanfriedchicken.com'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Soothr',
             notes: 'Meant to be some of the best Thai food in the US, reviews are seriously amazing',
@@ -3547,7 +3636,7 @@
           },
           {
             ...globalPlaces.hawksmoor,
-            area: 'East Side',
+            area: 'Manhattan',
             url: 'https://maps.app.goo.gl/kf8LpgkYtc2GMskn8'
           },
           {
@@ -3560,7 +3649,7 @@
             url: 'https://maps.app.goo.gl/vFqH18FeGAUqZbyW8'
           },
           {
-            area: ['Brooklyn', 'East Side', 'Queens', 'Uptown', 'West Side'],
+            area: ['Brooklyn', 'Manhattan', 'Queens'],
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Birria-Landia',
             notes: "I'm still skeptical of birria but this looks really good",
@@ -3578,7 +3667,7 @@
             url: 'https://maps.app.goo.gl/tbGCiKADbQfx4upA6'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: "John's of Bleecker Street",
             notes: "David Portnoy's favourite place",
@@ -3587,7 +3676,7 @@
             url: 'https://maps.app.goo.gl/CYMeUK4ic4QJLCGz5'
           },
           {
-            area: 'West Side',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'SMASHED',
             notes: 'Looks like some great smashberders',
@@ -3596,7 +3685,7 @@
             url: 'https://maps.app.goo.gl/sqddrrNk1BsRroR86'
           },
           {
-            area: 'East Side',
+            area: 'Manhattane',
             mealType: 'Snacc',
             name: 'GLACE',
             notes: 'Frozen hot chocolate looks insane',
@@ -3605,7 +3694,7 @@
             url: 'https://maps.app.goo.gl/vwvXEjc3Ar56briZ7'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: 'Sopper Time',
             name: "Danny & Coop's Cheesesteaks",
             notes: "Bradley Cooper's own cheesesteak place! They look to die for",
@@ -3614,7 +3703,7 @@
             url: 'https://maps.app.goo.gl/znL55Yqk4EJyFcSV6'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: 'Lunch',
             name: "Diso's Sandwich",
             notes: "Jimmy Fallon's favourite sandwich in NYC, apparently a lot of SNL cast members eat here too",
@@ -3632,7 +3721,7 @@
             url: 'https://maps.app.goo.gl/D3rZH531p7Q2C1XD7'
           },
           {
-            area: 'East Side',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: 'Golden Diner',
             notes: 'Apparently the best pancakes in the country',
@@ -3641,7 +3730,7 @@
             url: 'https://maps.app.goo.gl/xFg28Sp3pPdhS7fg8'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Breakfast', 'Lunch', 'Sopper Time'],
             name: 'Diner 24 NYC',
             notes: 'Apparently the best diner in the country',
@@ -3659,7 +3748,7 @@
             url: 'https://maps.app.goo.gl/jwz1VcHeaS1JCqgD9'
           },
           {
-            area: 'East Side',
+            area: 'Manhattan',
             mealType: 'Sopper Time',
             name: 'The Lions Bar & Grill',
             notes: 'Viral berder',
@@ -3668,7 +3757,7 @@
             url: 'https://maps.app.goo.gl/mxCfrKcLxp14qGgy5'
           },
           {
-            area: 'East Side',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'HighLife Burger',
             notes: 'In-N-Out dupe',
@@ -3677,13 +3766,40 @@
             url: 'https://maps.app.goo.gl/DusD3RV6TYM1bjLMA'
           },
           {
-            area: 'Downtown',
+            area: 'Manhattan',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Skinny Louie',
             notes: 'Berders and shakes look mean',
             referrerUrl: 'https://vt.tiktok.com/ZSBDMGm3y',
             type: 'Berders',
             url: 'https://vt.tiktok.com/ZSBDMGm3y'
+          },
+          {
+            area: 'Manhattan',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Ceres',
+            notes: 'Insanely expensive pizzas, some say the best in the city',
+            referrerUrl: 'https://vt.tiktok.com/ZSSp9HvP3',
+            type: 'Italian',
+            url: 'https://maps.app.goo.gl/ixdXUd4sgCRper9R7'
+          },
+          {
+            area: 'Manhattan',
+            mealType: 'Snacc',
+            name: 'Culture Espresso',
+            notes: 'My friends said this is an amazing cookie, even better than Levain',
+            referrerUrl: () => confirm('My friends Noah and Elijah'),
+            type: 'Cookies',
+            url: 'https://www.cultureespresso.com'
+          },
+          {
+            area: ['Brooklyn', 'Manhattan'],
+            mealType: ['Breakfast', 'Lunch'],
+            name: 'PopUp Bagels',
+            notes: 'Rip n dip bagels',
+            referrerUrl: 'https://vt.tiktok.com/ZSSpxV6jp',
+            type: 'Bagels',
+            url: 'https://www.popupbagels.com'
           }
         ],
         Philadelphia: [
@@ -3706,6 +3822,15 @@
             referrerUrl: 'https://x.com/sdw/status/1797876775172907239',
             type: 'Berders',
             url: 'https://maps.app.goo.gl/bpx1bfAuPAteHYf29'
+          },
+          {
+            area: ['Civic Center', 'Mission Rock', 'Richmond District (Inner Richmond)'],
+            mealType: 'Snacc',
+            name: 'Arsicault Bakery',
+            notes: 'Croissants look amazing',
+            referrerUrl: 'https://vt.tiktok.com/ZSSpHTYqm',
+            type: 'Bakery',
+            url: 'https://arsicault-bakery.com'
           }
         ]
       }

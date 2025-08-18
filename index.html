@@ -67,14 +67,21 @@
       padding: 10px;
     }
 
+    .sorting {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .sorting > div {
-      padding: 3px 0;
+      display: flex;
+      gap: 10px;
     }
 
     #filtersContainer {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 12px;
       margin-top: 10px;
       max-width: 500px;
     }
@@ -84,8 +91,14 @@
     }
 
     #filtersContainer > label {
+      background: #e8a61a;
+      border-radius: 5px;
+      color: #180321;
+      cursor: pointer;
       display: flex;
+      font-size: 14px;
       gap: 2px;
+      padding: 5px;
     }
 
     #filtersContainer:empty + .filterControls {
@@ -3535,7 +3548,7 @@
             url: 'https://maps.app.goo.gl/sqddrrNk1BsRroR86'
           },
           {
-            area: 'Manhattane',
+            area: 'Manhattan',
             mealType: 'Snacc',
             name: 'GLACE',
             notes: 'Frozen hot chocolate looks insane',
@@ -4015,7 +4028,10 @@
 
       const placesByHeading = {};
       sortedPlaces.forEach((place) => {
-        const headingValue = place[headingKey] || selectedCity;
+        let headingValue = place[headingKey] || selectedCity;
+        if (headingKey === 'type') {
+          headingValue = `${emojisByType[headingValue]} ${headingValue}`;
+        }
         filters.add(headingValue);
       });
 

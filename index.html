@@ -1959,7 +1959,6 @@
             mealType: 'Lunch',
             name: 'Oltre - Alimentari e Cucina',
             notes: 'This is in Prahan Market, the pasta and sandwiches look so nice and homemade',
-            referrerUrl: 'Oltre - Alimentari e Cucina',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/9QbArqnicg2fFMC58'
           },
@@ -3807,7 +3806,7 @@
           return true;
         }
 
-        if ('referrerUrl' in place && typeof referrerUrl !== 'string' && typeof referrerUrl !== 'function') {
+        if ('referrerUrl' in place && !(typeof referrerUrl === 'string' && referrerUrl.startsWith('http') || typeof referrerUrl === 'function')) {
           return true;
         }
 

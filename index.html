@@ -4025,12 +4025,17 @@
       const oldFilters = [...filters];
       filters.clear();
 
+      const normaliseHeadingValue = (headingValue) => {
+        if (headingKey === 'type') {
+          return `${emojisByType[headingValue]} ${headingValue}`;
+        }
+
+        return headingValue;
+      };
+
       const placesByHeading = {};
       sortedPlaces.forEach((place) => {
-        let headingValue = place[headingKey] || selectedCity;
-        if (headingKey === 'type') {
-          headingValue = `${emojisByType[headingValue]} ${headingValue}`;
-        }
+        let headingValue = normaliseHeadingValue(place[headingKey] || selectedCity);
         filters.add(headingValue);
       });
 
@@ -4038,11 +4043,12 @@
 
       sortedPlaces.forEach((place) => {
         const headingValue = place[headingKey] || selectedCity;
-        if (previouslyIncluded && previouslyIncluded.length > 0 && !previouslyIncluded.includes(headingValue) && filters.size > 1) {
-          excluded.add(headingValue);
+        const normalisedHeadingValue = normaliseHeadingValue(headingValue);
+        if (previouslyIncluded && previouslyIncluded.length > 0 && !previouslyIncluded.includes(normalisedHeadingValue) && filters.size > 1) {
+          excluded.add(normalisedHeadingValue);
         }
 
-        if (excluded.has(headingValue)) {
+        if (excluded.has(normalisedHeadingValue)) {
           return;
         }
         if (!placesByHeading[headingValue]) {

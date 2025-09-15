@@ -178,9 +178,9 @@
       <div>
         <label for="status">Status:</label>
         <select id="status">
-          <option value="any">Any</option>
-          <option value="tried">Tried</option>
-          <option value="wanted">Want to Try</option>
+          <option id="status-any" value="any">ERROR</option>
+          <option id="status-tried" value="tried">ERROR</option>
+          <option id="status-wanted" value="wanted">ERROR</option>
         </select>
       </div>
       <div id="filtersContainer"></div>
@@ -3911,11 +3911,33 @@
         localStorage.setItem('city', selectedCity);
       }
 
-      let selectedPlaces = [
-        ...Object.values(rawPlaces)
+      const filterPlacesByCity = (places) => {
+        return Object.values(places)
           .flatMap((cityCollections) => Object.entries(cityCollections))
-          .find(([city]) => city === selectedCity)[1]
+          .find(([city]) => city === selectedCity)?.[1] ?? [];
+      };
+      let selectedPlaces = [
+        ...filterPlacesByCity(rawPlaces)
       ];
+      [
+        ['any', 'Any'],
+        ['tried', 'Tried'],
+        ['wanted', 'Want to Try']
+      ].forEach(([status, label]) => {
+        let count = -1;
+        if (status === statusElement.value) {
+          count = selectedPlaces.length;
+        } else {
+          const places = getRawPlaces(status);
+          count = filterPlacesByCity(places).length;
+        }
+
+        const element = document.getElementById(`status-${status}`);
+        element.innerText = `${label} (${count})`;
+        element.disabled = count === 0;
+      });
+
+
       const mealTypes = new Set(selectedPlaces.flatMap(({ mealType }) => mealType));
       if (!mealTypes.has(selectedMealType)) {
         selectedMealType = 'Any';

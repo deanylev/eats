@@ -902,8 +902,18 @@
             mealType: ['Lunch', 'Sopper Time'],
             name: 'Thai Town',
             notes: "The best pad see ew I've had in Melbourne",
+            referrerUrl: () => confirm('Came here with Fifi and Lashel'),
             type: 'Thai',
             url: 'https://maps.app.goo.gl/Srera5TZ2iyPixbh7'
+          },
+          {
+            area: 'CBD',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Izakaya Domo',
+            notes: "Had one of the best chicken dons I've ever had here, great sushi too",
+            referrerUrl: () => confirm("Came here for Poggs' 25th birthday"),
+            type: 'Japanese',
+            url: 'https://maps.app.goo.gl/WhLftDFpSfYBxmTf8'
           }
         ],
         Mornington: [
@@ -2142,15 +2152,6 @@
             url: 'https://maps.app.goo.gl/VZA9ZA858LVp87w1A'
           },
           {
-            area: 'Elsternwick',
-            mealType: 'Sopper Time',
-            name: 'Copycat Bar & Restaurant',
-            notes: 'Focaccia, pasta and tiramisu',
-            referrerUrl: 'https://vt.tiktok.com/ZSBDMWwuB',
-            type: 'Italian',
-            url: 'https://maps.app.goo.gl/4qzSdzL36ouCovU18'
-          },
-          {
             area: 'Toorak',
             mealType: 'Lunch',
             name: 'Casa Del Cibo',
@@ -2185,6 +2186,33 @@
             referrerUrl: 'https://vt.tiktok.com/ZSSpxLCL1',
             type: 'Berders',
             url: 'https://maps.app.goo.gl/HCt352JR7ySLmUZY9'
+          },
+          {
+            area: 'CBD',
+            mealType: 'Lunch',
+            name: 'French Fix',
+            notes: 'Great looking baguettes!',
+            referrerUrl: () => confirm("I can't remember :("),
+            type: 'Sandwiches',
+            url: 'https://maps.app.goo.gl/yG19ugTVnr2gxEQbA'
+          },
+          {
+            area: 'Caulfield',
+            mealType: ['Snacc', 'Breakfast'],
+            name: 'Communal Market',
+            notes: 'Apparently amazing coffee and pastries/sandwiches, 5 stars on Google',
+            referrerUrl: () => confirm('Lijh'),
+            type: 'Cafe',
+            url: 'https://maps.app.goo.gl/remWA9n5S9iJiczp8'
+          },
+          {
+            area: 'Caulfield North',
+            mealType: 'Breakfast',
+            name: 'Mother',
+            notes: 'Known for their pesto scrambled eggs',
+            referrerUrl: () => confirm('Lijh'),
+            type: 'Cafe',
+            url: 'https://maps.app.goo.gl/oCsSMipFB4WnFAs29'
           }
         ],
         Mornington: [

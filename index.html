@@ -1934,7 +1934,7 @@
             notes: 'Mexican food looks super authentic',
             referrerUrl: 'https://vt.tiktok.com/ZS6UkvNxg',
             type: 'Mexican',
-            url: 'https://vt.tiktok.com/ZS6UkvNxg'
+            url: 'https://maps.app.goo.gl/xJ2yRhXvNQJHFk2e9'
           },
           {
             area: 'Collingwood',
@@ -2032,7 +2032,7 @@
             notes: 'Berders look amazing, will have to try next time I go to Lido',
             referrerUrl: 'https://vt.tiktok.com/ZSrBcdjwn',
             type: 'Berders',
-            url: 'https://vt.tiktok.com/ZSrBcdjwn'
+            url: 'https://maps.app.goo.gl/q5P4CdHX8X27N8ScA'
           },
           {
             area: 'Coburg',
@@ -3643,7 +3643,7 @@
             notes: 'Berders and shakes look mean',
             referrerUrl: 'https://vt.tiktok.com/ZSBDMGm3y',
             type: 'Berders',
-            url: 'https://vt.tiktok.com/ZSBDMGm3y'
+            url: 'https://maps.app.goo.gl/cvP35JGY9pXTaPcS8'
           },
           {
             area: 'Manhattan',
@@ -3828,6 +3828,11 @@
         }
 
         if (typeof url !== 'string') {
+          return true;
+        }
+
+        if (url.includes('vt.tiktok.com')) {
+          // I've accidentally copy pasted the referrerUrl into the url a few times
           return true;
         }
 

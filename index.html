@@ -2066,7 +2066,7 @@
             area: 'Collingwood',
             mealType: ['Lunch', 'Sopper Time'],
             name: "Easey's",
-            notes: "Mean look burgers served inside of a train carriage, what's not to love",
+            notes: "Mean look berders served inside of a train carriage, what's not to love",
             referrerUrl: () => confirm('My mom and Ricki'),
             type: 'Berders',
             url: 'https://maps.app.goo.gl/CDFHujxkYBLEsqUj7'
@@ -2120,7 +2120,7 @@
             area: 'Port Melbourne',
             mealType: ['Lunch', 'Sopper Time'],
             name: 'CBCo Brewing',
-            notes: 'Mean looking burgers',
+            notes: 'Mean looking berders',
             referrerUrl: 'https://vt.tiktok.com/ZSBDYsg1T',
             type: 'Pub',
             url: 'https://maps.app.goo.gl/J6M4s7eb2F4PYtKz6'
@@ -3777,7 +3777,7 @@
           return true;
         }
 
-        const { area, mealType, name, referrerUrl, type, url } = place;
+        const { area, mealType, name, notes, referrerUrl, type, url } = place;
         if (Array.isArray(area)) {
           if (area.length === 1 || area.some((element) => typeof element !== 'string' || element === '')) {
             return true;
@@ -3795,6 +3795,10 @@
         }
 
         if (typeof name !== 'string' || name === '') {
+          return true;
+        }
+
+        if (typeof notes !== 'string' || notes === '' || notes.includes('burger')) {
           return true;
         }
 

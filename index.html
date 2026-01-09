@@ -78,6 +78,10 @@
       gap: 10px;
     }
 
+    .notTried {
+      color: red;
+    }
+
     #filtersContainer {
       display: flex;
       flex-wrap: wrap;
@@ -4243,8 +4247,12 @@
             subHeadingWrapperElement.append(' (Global)')
           }
 
-          if (statusElement.value === 'any') {
-            subHeadingWrapperElement.append(place.isTried ? ' (TRIED)' : ' (NOT TRIED)');
+          if (statusElement.value === 'any' && !place.isTried) {
+            const notTriedElement = document.createElement('span');
+            notTriedElement.className = 'notTried';
+            notTriedElement.innerText = ' (NOT TRIED)';
+
+            subHeadingWrapperElement.append(notTriedElement);
           }
 
           const notesElement = document.createElement('div');

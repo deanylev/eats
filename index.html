@@ -970,6 +970,15 @@
             referrerUrl: () => confirm('Lijh'),
             type: 'Cafe',
             url: 'https://maps.app.goo.gl/remWA9n5S9iJiczp8'
+          },
+          {
+            area: 'Brunswick East',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: "Bird Bang'n Chicken",
+            notes: 'The feed me menu here is great, amazing wings, boneless and cornbread',
+            referrerUrl: 'https://vt.tiktok.com/ZS2TVb3XN',
+            type: 'Fried Chicken',
+            url: 'https://maps.app.goo.gl/qH2CVP1kNY8qA4vs7'
           }
         ],
         Mornington: [
@@ -1933,15 +1942,6 @@
             url: 'https://maps.app.goo.gl/D16aFqaLchu38oTt9'
           },
           {
-            area: 'Brunswick East',
-            mealType: ['Lunch', 'Sopper Time'],
-            name: "Bird Bang'n Chicken",
-            notes: 'Fried chicken and sides look insane, proper American style',
-            referrerUrl: 'https://vt.tiktok.com/ZS2TVb3XN',
-            type: 'Fried Chicken',
-            url: 'https://maps.app.goo.gl/qH2CVP1kNY8qA4vs7'
-          },
-          {
             area: 'Abbotsford',
             mealType: 'Lunch',
             name: "Kelso's Sandwich Shoppe",
@@ -2438,6 +2438,15 @@
             referrerUrl: 'https://www.tiktok.com/@thesydneypanel/video/7565793481998830868',
             type: 'Italian',
             url: 'https://maps.app.goo.gl/AD71cHAtEtGPcWzH7'
+          },
+          {
+            area: 'Coogee',
+            mealType: ['Lunch', 'Sopper Time'],
+            name: 'Out Of The Blue',
+            notes: 'Proper traditional berders',
+            referrerUrl: 'https://www.instagram.com/reels/DStD-HMAWv3',
+            type: ['Berders', 'Fish and Chips'],
+            url: 'https://maps.app.goo.gl/fGpK2TeV5SvGJ98B9'
           }
         ]
       },
@@ -3963,8 +3972,31 @@
       }
     }
 
-    document.getElementById('numPlacesTried').innerText = flattenRawPlaces(getRawPlaces('tried')).length;
-    document.getElementById('numPlacesWanted').innerText = flattenRawPlaces(getRawPlaces('wanted')).length;
+    const flattenedRawPlacesTried = flattenRawPlaces(getRawPlaces('tried'));
+    const flattenedRawPlacesWanted = flattenRawPlaces(getRawPlaces('wanted'));
+
+    document.getElementById('numPlacesTried').innerText = flattenedRawPlacesTried.length;
+    document.getElementById('numPlacesWanted').innerText = flattenedRawPlacesWanted.length;
+
+    // TODO display category rankings?
+    // const typeCountTried = {};
+    // const typeCountWanted = {};
+
+    // [[flattenedRawPlacesTried, typeCountTried], [flattenedRawPlacesWanted, typeCountWanted]].forEach(([places, count]) => {
+    //   places.forEach((place) => {
+    //     (Array.isArray(place.type) ? place.type : [place.type]).forEach((type) => {
+    //       if (!count[type]) {
+    //         count[type] = 0;
+    //       }
+
+    //       count[type]++;
+    //     });
+
+    //   });
+
+    //   console.log(Object.entries(count).sort((a, b) => b[1] - a[1]))
+    // });
+
 
     const filtersContainerElement = document.getElementById('filtersContainer');
     const filters = new Set();
